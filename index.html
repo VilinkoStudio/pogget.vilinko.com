@@ -54,6 +54,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <style>
     * {
@@ -413,6 +414,65 @@
     @media (max-width: 768px) {
       .more-info-section { padding: 3rem 1.5rem; }
     }
+
+    /* 新增：下载弹窗与背景模糊样式 */
+    .download-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 9998;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .download-backdrop.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .download-card {
+      min-height: 60px;
+      position: fixed;
+      background: #ffffff;
+      border: 2px solid #000000;
+      border-radius: 12px;
+      padding: 10px;
+      z-index: 9999;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      min-width: 260px;
+    }
+
+    .download-card.show {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .download-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      color: #000000;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+    }
+
+    .download-option:hover {
+      background-color: #f3f4f6;
+    }
   </style>
 </head>
 <body>
@@ -438,7 +498,7 @@
       <div class="header-right">
         <div class="ScrDivide"></div>
         <a href="#" class="vilinko-control vilinko-button vilinko-round-full">DOCS</a>
-         <a href="#" class="vilinko-control vilinko-button-primary vilinko-round-full">下载</a>
+         <a href="#" class="vilinko-control vilinko-button-primary vilinko-round-full js-download-btn">下载</a>
       </div>
     </header>
 
@@ -450,7 +510,7 @@
       <h2 class="sub-giant-text">一款完全免费、由每一个用户支持的轻量文件交互效率工具。</h2>
       
       <div class="action-group">
-        <a href="#" class="vilinko-control vilinko-button-primary vilinko-round-full vilinko-min-width vilinko-ext-height1">下载</a>
+        <a href="#" class="vilinko-control vilinko-button-primary vilinko-round-full vilinko-min-width vilinko-ext-height1 js-download-btn">下载</a>
         <a class="pageTitleDes center-line" style="min-width: 105px;" href="https://www.vilinko.com/index.html#?link=links/sponsor.html">赞助 <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="#F31216" class="bi bi-heart-fill" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
         </svg></a>
@@ -478,6 +538,13 @@
       Hello Pogget!
     </p>
   </section>
+
+  <div id="download-backdrop" class="download-backdrop"></div>
+  <div id="download-card" class="download-card">
+    <a href="https://down1.vilinko.com/download/pogget.zip" class="download-option">
+      <i class="fa-solid fa-download"></i> Pogget Windows x64 (推荐)
+    </a>
+  </div>
 
   <script>
     const _pog = { valueOf: () => "Pog", toString: () => "Pog" };
@@ -538,6 +605,42 @@
       });
 
       observer.observe(moreInfoSection);
+
+      // 新增：下载弹窗交互逻辑
+      const downloadBtns = document.querySelectorAll('.js-download-btn');
+      const backdrop = document.getElementById('download-backdrop');
+      const card = document.getElementById('download-card');
+
+      downloadBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          const cardRect = card.getBoundingClientRect();
+          let x = e.clientX;
+          let y = e.clientY + 15; // 默认显示在鼠标下方稍微偏移的位置
+          
+          // 边界检测：防止弹窗超出屏幕右侧或下侧
+          if (x + cardRect.width > window.innerWidth) {
+              x = window.innerWidth - cardRect.width - 20;
+          }
+          if (y + cardRect.height > window.innerHeight) {
+              y = e.clientY - cardRect.height - 15; // 如果下方空间不够，则显示在鼠标上方
+          }
+          
+          card.style.left = `${x}px`;
+          card.style.top = `${y}px`;
+          
+          backdrop.classList.add('show');
+          card.classList.add('show');
+        });
+      });
+
+      // 点击背景模糊区关闭弹窗
+      backdrop.addEventListener('click', () => {
+        backdrop.classList.remove('show');
+        card.classList.remove('show');
+      });
+      
     });
   </script>
 
