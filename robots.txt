@@ -1,0 +1,62 @@
+# ==========================================
+# Pogget (Vilinko Design) Robots.txt
+# ==========================================
+
+# 1. 默认放行所有常规搜索引擎
+User-agent: *
+Allow: /
+
+# ==========================================
+# 2. 国际主流 AI 与大模型爬虫
+# ==========================================
+# OpenAI (ChatGPT / SearchGPT)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic (Claude)
+User-agent: Claude-Web
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity (AI 搜索引擎)
+User-agent: PerplexityBot
+Allow: /
+
+# Google (Gemini / AI Overviews)
+User-agent: Google-Extended
+Allow: /
+
+# 字节跳动 (豆包 Doubao / 扣子 Coze / 抖音搜索)
+User-agent: Bytespider
+Allow: /
+
+# 深度求索 (DeepSeek)
+User-agent: DeepSeekBot
+Allow: /
+
+# 月之暗面 (Kimi / Moonshot AI)
+User-agent: MoonshotBot
+Allow: /
+
+# 阿里系 (通义千问 Qwen / 夸克 AI)
+User-agent: YisouSpider
+Allow: /
+User-agent: Qwen
+Allow: /
+
+# 智谱 AI (清言 ChatGLM)
+User-agent: ZhipuBot
+Allow: /
+
+# 百度 (文心一言 / 百度 AI 搜索)
+User-agent: Baiduspider
+Allow: /
+
+# ==========================================
+# 4. 核心指引 (Sitemap & LLM-Context)
+# ==========================================
+Sitemap: https://pogget.vilinko.com/sitemap.xml
+# LLMs-Context: https://pogget.vilinko.com/LLMs.txt

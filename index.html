@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>POGGET! - Pocket + Widget | 免费轻量文件交互工具</title>
+  <meta name="description" content="欢迎探索 Pogget！这是一款完全免费、轻量、强大且由每一个用户支持的文件交互管理工具，专注于以高灵活性提升工作效率。">
+  <meta name="keywords" content="Pogget, 桌面收纳, 文件管理, 文件交互, 效率工具, 免费软件, Vilinko">
+  <meta name="author" content="Vilinko">
+  <meta name="subject" content="桌面收纳与文件管理效率工具">
+  
+  <link rel="canonical" href="https://pogget.vilinko.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vilinko Design">
+  <meta property="og:title" content="POGGET! - 完全免费的轻量级文件交互工具">
+  <meta property="og:description" content="Pocket + Widget = Pogget! 探索由每一个用户支持的强大、高效地文件收纳和管理工具。">
+  <meta property="og:image" content="https://pogget.vilinko.com/img/pogget-share.jpg"> 
+  <meta property="og:url" content="https://pogget.vilinko.com/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="POGGET! - 免费轻量文件交互工具">
+  <meta name="twitter:description" content="Pocket + Widget = Pogget! 探索由每一个用户支持的强大、高效地文件收纳和管理工具。">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Pogget",
+    "operatingSystem": "Windows", 
+    "applicationCategory": "UtilitiesApplication",
+    "description": "Pogget 是一款完全免费、轻量、强大且由每一个用户支持的文件交互管理工具。",
+    "creator": {
+      "@type": "Organization",
+      "name": "Vilinko",
+      "url": "https://www.vilinko.com"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "CNY"
+    },
+    "featureList": [
+      "桌面收纳",
+      "文件交互管理",
+      "轻量化设计",
+      "完全免费"
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="./css/vinaui.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@300..900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    ::selection {
+      background-color: rgb(82, 121, 251);
+      color: #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth; 
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 8rem 3rem 2rem 3rem; 
+    }
+
+    @media (max-width: 768px) {
+      .hero-section { padding: 6rem 1.5rem 1.5rem 1.5rem; }
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+      z-index: 1000;
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .header { padding: 1.5rem; }
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .placeholder-img {
+      height: 48px;
+      object-fit: contain;
+      background-color: #f9f9f9;
+      border: 2px dashed #9ca3af;
+      border-radius: 8px;
+      min-width: 48px;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      color: #6b7280;
+      font-weight: bold;
+    }
+
+    .download-btn {
+      background-color: #ffcc00; 
+      color: #000000;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      padding: 0.6rem 1.5rem;
+      border: 2px solid #000000;
+      border-radius: 50px; 
+      transition: all 0.2s ease;
+      box-shadow: 2px 2px 0px #000000; 
+    }
+
+    .download-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px #000000;
+    }
+    .download-btn:active {
+      transform: translate(0px, 0px);
+      box-shadow: 0px 0px 0px #000000;
+    }
+
+    .ScrDivide {
+      width: 100%;
+      height: 2rem;
+      display: none;
+    }
+
+    .pageTitleDes {
+      font-family: 'Open Sans', Lucida Grande, Lucida Sans Unicode, Lucida Sans, Geneva, Verdana, sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.01em;
+      color: #000;
+      text-decoration: none;
+    }
+
+    .pageTitleDes:hover {
+      color: #000;
+    }
+
+    .center-line {
+      position: relative;
+    }
+
+    .center-line::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 3px;
+      position: absolute;
+      bottom: -10px;
+      background: #000;
+      transition: all 0.3s ease-in-out;
+      transform: scale3d(0.0, 1, 1);
+      transform-origin: 50% 0;
+    }
+
+    .center-line:hover::after {
+      transform: scale3d(1, 1, 1);
+    }
+
+    @media screen and (max-width: 820px) {
+      .ScrDivide {
+        width: 100%;
+        height: 2rem;
+        display: inline-block;
+      }
+      .pageTitleDes {
+        transform: translateY(0.5rem) !important;
+      }
+    }
+
+    .main-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      margin: 3rem 0;
+      transform: translateY(-40px);
+    }
+
+    .top-text-pill {
+      font-size: clamp(1.1rem, 3vw, 2.2rem);
+      letter-spacing: 0.02em;
+      font-weight: 800;
+      background-color: #ffffff;
+      padding: 0.2rem 1.5rem;
+      border: 3px solid #000000;
+      border-radius: 50px; 
+      position: relative;
+      z-index: 10; 
+      transform: translateY(40%); 
+    }
+
+    .top-text-pill::after {
+      content: '|';
+      margin-left: 2px;
+      font-weight: 400;
+      animation: blink 0.8s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .giant-text {
+      color:RGB(20,20,20);
+      font-family: "Sansita Swashed", system-ui;
+      font-size: clamp(4.5rem, 13vw, 13rem); 
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      z-index: 1; 
+      position: relative;
+      display: flex; 
+      justify-content: center;
+      text-shadow:0 8px 0 RGB(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.5s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .giant-text.show-up {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .main-title-text {
+      position: relative; 
+      z-index: 1; 
+    }
+
+    .exclamation {
+      color: #000000; 
+      -webkit-text-stroke: 4px #ffffff; 
+      text-stroke: 4px #ffffff; 
+      transform: rotate(5deg); 
+      font-weight: 700;
+      position: relative; 
+      z-index: 5; 
+      text-shadow:none;
+    }
+
+    .sub-giant-text {
+      color: #333333;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      letter-spacing: 0.015em;
+      line-height: 1.5;
+      font-weight: 400;
+      margin-top: 1.5rem;
+      z-index: 1;
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px)!important;
+      transition: opacity 0.5s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .sub-giant-text.show-up {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .action-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 2.5rem;
+      z-index: 1;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px)!important;
+      transition: opacity 0.5s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .action-group.show-up {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer {
+      margin-top: auto;
+      padding-top: 2rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 3px solid #000000;
+      margin-bottom: 2rem;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+
+    .footer-text {
+      font-size: clamp(1.2rem, 3vw, 2.2rem);
+      letter-spacing: -0.015em;
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 85%;
+    }
+
+    .arrow-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      margin-bottom: 0.3rem;
+      transition: transform 0.4s ease; 
+    }
+
+    @media (min-width: 768px) {
+      .arrow-icon {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    .arrow-icon.rotated {
+      transform: rotate(45deg); 
+    }
+
+    .more-info-section {
+      min-height: 100vh;
+      padding: 4rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+    }
+
+    .more-info-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -0.02em;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .more-info-content {
+      font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+      letter-spacing: 0.01em;
+      line-height: 1.6;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .more-info-section { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="geo-ai-summary" style="display:none;" aria-hidden="true">
+    <article>
+      <h1>关于 Pogget 软件</h1>
+      <p>Pogget 是一款由 Vilinko 开发的轻量级桌面收纳与文件交互管理工具。其核心设计理念是 "Pocket + Widget"，致力于为用户提供高效、灵活、极简的文件管理体验。</p>
+      <ul>
+        <li><strong>核心功能：</strong> 提供高效的文件交互管理与桌面分类收纳。</li>
+        <li><strong>产品定位：</strong> 完全免费、轻量化运行环境，由每一个用户社区支持。</li>
+        <li><strong>开发商：</strong> Vilinko Studio。</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="hero-section">
+    <header class="header">
+      <div class="header-left">
+        <img src="./img/products.png" alt="Pogget Logo" class="placeholder-img">
+      </div>
+
+      <div class="header-right">
+        <div class="ScrDivide"></div>
+        <a href="#" class="vilinko-control vilinko-button vilinko-round-full">DOCS</a>
+         <a href="#" class="vilinko-control vilinko-button-primary vilinko-round-full">下载</a>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="top-text-pill"></div>
+      <h1 class="giant-text">
+        <span class="main-title-text">Pogget</span><span class="exclamation">!</span>
+      </h1>
+      <h2 class="sub-giant-text">一款完全免费、由每一个用户支持的轻量文件交互效率工具。</h2>
+      
+      <div class="action-group">
+        <a href="#" class="vilinko-control vilinko-button-primary vilinko-round-full vilinko-min-width vilinko-ext-height1">下载</a>
+        <a class="pageTitleDes center-line" style="min-width: 105px;" href="https://www.vilinko.com/index.html#?link=links/sponsor.html">赞助 <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="#F31216" class="bi bi-heart-fill" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+        </svg></a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <hr class="divider">
+      <div class="footer-content">
+        <p class="footer-text">
+          探索更多 Pogget
+        </p>
+        <a href="#more-info" style="color: inherit; text-decoration: none; display: flex;" aria-label="向下滚动了解更多">
+          <svg class="arrow-icon" id="scroll-arrow" fill="none" stroke="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 5v14m0 0H5m14 0L5 5"></path>
+          </svg>
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <section id="more-info" class="more-info-section">
+    <h2 class="more-info-title">Coming soon</h2>
+    <p class="more-info-content">
+      Hello Pogget!
+    </p>
+  </section>
+
+  <script>
+    const _pog = { valueOf: () => "Pog", toString: () => "Pog" };
+    const _get = { valueOf: () => "get!", toString: () => "get!" };
+    ['pocket', 'Pocket', 'POCKET'].forEach(k => Object.defineProperty(window, k, { get: () => _pog }));
+    ['widget', 'Widget', 'WIDGET'].forEach(k => Object.defineProperty(window, k, { get: () => _get }));
+
+    const _log = console.log;
+    console.log = function(...args) {
+      if (args.length === 1 && typeof args[0] === 'string') {
+        const str = args[0].toLowerCase().replace(/\s+/g, '');
+        if (str === 'pocket+widget' || str === 'pocket+widget=') {
+          return _log.call(this, 'Pogget!');
+        }
+      }
+      _log.apply(this, args);
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const topPill = document.querySelector('.top-text-pill');
+      const giantText = document.querySelector('.giant-text');
+      const subGiantText = document.querySelector('.sub-giant-text'); 
+      const actionGroup = document.querySelector('.action-group'); 
+      const textToType = "Pocket + Widget";
+      let charIndex = 0;
+
+      function typeWriter() {
+        if (charIndex < textToType.length) {
+          topPill.textContent += textToType.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeWriter, 120); 
+        } else {
+          setTimeout(() => {
+            giantText.classList.add('show-up');
+            setTimeout(() => {
+              subGiantText.classList.add('show-up');
+              actionGroup.classList.add('show-up'); 
+            }, 300); 
+          }, 600); 
+        }
+      }
+
+      setTimeout(typeWriter, 400);
+
+      const arrowIcon = document.getElementById('scroll-arrow');
+      const moreInfoSection = document.getElementById('more-info');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            arrowIcon.classList.add('rotated');
+          } else {
+            arrowIcon.classList.remove('rotated');
+          }
+        });
+      }, {
+        threshold: 0.1 
+      });
+
+      observer.observe(moreInfoSection);
+    });
+  </script>
+
+</body>
+</html>

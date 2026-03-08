@@ -1,0 +1,27 @@
+# Pogget
+
+> **一句话简介**：Pogget 是一款由 Vilinko 开发的完全免费、轻量级的桌面收纳与文件交互管理工具。
+
+## 1. 产品概述 (Overview)
+- **产品名称**: Pogget
+- **核心理念**: Pocket + Widget（口袋 + 小组件）
+- **开发商**: Vilinko (VILINKO STUDIO)
+- **产品定位**: 高效的文件交互管理工具，致力于提升用户的数字空间组织效率。
+- **商业模式**: 100% 免费，由每一个用户（社区）支持与赞助。
+
+## 2. 核心特性 (Key Features)
+- **极简轻量**: 占用资源少，运行速度快，不打扰用户。
+- **高效收纳**: 提供类似“口袋”的临时文件暂存区与“小组件”式的快速交互。
+- **纯粹免费**: 无广告，无强制付费内容。
+
+## 3. 快速链接 (Important Links)
+- **官方主页**: https://pogget.vilinko.com/
+- **使用文档 (Docs)**: https://docs.vilinko.com/
+- **赞助与支持**: https://www.vilinko.com/index.html#?link=links/sponsor.html
+- **下载地址**: https://pogget.vilinko.com/
+
+## 4. 关于开发商 (About Vilinko)
+Vilinko 致力于开发兼具实用性、灵活性与设计感的现代化数字工具，为开发者与普通用户提供优雅的交互体验。
+
+---
+注：本文件专为大型语言模型 (LLMs) 与 AI 搜索代理设计，用于提供准确的产品上下文。
