@@ -446,17 +446,23 @@
       z-index: 9999;
       visibility: hidden;
       opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      
+
+      transform: scale(0);
+      transform-origin: top left;
+      
+      transition: transform 0.4s cubic-bezier(0.34, 1.25, 0.64, 1), 
+                  opacity 0.2s ease, 
+                  visibility 0.4s;
       min-width: 260px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
     }
 
     .download-card.show {
       visibility: visible;
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1); 
     }
-
     .download-option {
       display: flex;
       align-items: center;
@@ -472,6 +478,15 @@
 
     .download-option:hover {
       background-color: #f3f4f6;
+    }
+
+    /* 版权信息样式 */
+    .footer-copyright {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+      color: #666;
+      background-color: #fff;
     }
   </style>
 </head>
@@ -539,10 +554,17 @@
     </p>
   </section>
 
+  <div class="footer-copyright">
+    Copyright © 2019-2026 Vilinko Studio.All rights reserved.
+  </div>
+
   <div id="download-backdrop" class="download-backdrop"></div>
   <div id="download-card" class="download-card">
     <a href="https://down1.vilinko.com/download/pogget.zip" class="download-option">
-      <i class="fa-solid fa-download"></i> Pogget Windows x64 (推荐)
+      <i class="fa-brands fa-windows"></i> Pogget Windows x64 (推荐)
+    </a>
+    <a href="https://down1.vilinko.com/download/pogget_arm64.zip" class="download-option">
+      <i class="fa-brands fa-windows"></i> Pogget Windows ARM64
     </a>
   </div>
 
@@ -606,7 +628,7 @@
 
       observer.observe(moreInfoSection);
 
-      // 新增：下载弹窗交互逻辑
+// 下载弹窗交互逻辑
       const downloadBtns = document.querySelectorAll('.js-download-btn');
       const backdrop = document.getElementById('download-backdrop');
       const card = document.getElementById('download-card');
@@ -615,16 +637,23 @@
         btn.addEventListener('click', (e) => {
           e.preventDefault();
           
-          const cardRect = card.getBoundingClientRect();
           let x = e.clientX;
-          let y = e.clientY + 15; // 默认显示在鼠标下方稍微偏移的位置
+          let y = e.clientY;
           
-          // 边界检测：防止弹窗超出屏幕右侧或下侧
-          if (x + cardRect.width > window.innerWidth) {
-              x = window.innerWidth - cardRect.width - 20;
+
+          if (x + 280 > window.innerWidth) { 
+              x -= 280;
+    
+              card.style.transformOrigin = 'top right';
+          } else {
+              card.style.transformOrigin = 'top left';
           }
-          if (y + cardRect.height > window.innerHeight) {
-              y = e.clientY - cardRect.height - 15; // 如果下方空间不够，则显示在鼠标上方
+
+
+          if (y + 150 > window.innerHeight) { 
+              card.style.transformOrigin = card.style.transformOrigin.replace('top', 'bottom');
+          } else {
+              card.style.transformOrigin = card.style.transformOrigin.replace('bottom', 'top');
           }
           
           card.style.left = `${x}px`;
