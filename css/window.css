@@ -1,0 +1,170 @@
+.pogget-window {
+      position: absolute;
+      width: 300px;
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 6px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      z-index: 50;
+      font-family: inherit;
+    }
+
+    .pogget-window-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: #ffffff;
+      border-bottom: 1px solid #f0f0f0;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .pogget-window-header:active {
+      cursor: grabbing;
+    }
+
+    .pogget-title-pill {
+      display: flex;
+      align-items: center;
+      background: #f3f3f3;
+      padding: 4px 12px 4px 6px;
+      border-radius: 6px;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    .pogget-color-tag {
+      width: 19px;
+      height: 19px;
+      background-color: #b3d688; /* 还原图片中的浅绿色 */
+      border: 1px solid #9fc175;
+      border-radius: 4px;
+    }
+
+    .pogget-window-actions {
+      display: flex;
+      gap: 12px;
+      color: #111;
+      font-size: 1rem;
+    }
+
+    .pogget-window-content {
+      padding: 40px 20px;
+      text-align: center;
+      color: #999;
+      font-size: 0.9rem;
+      line-height: 2.4;
+    }
+
+    /* 还原按键质感，同时挂载 vilinko-control */
+    .key-btn {
+      display: inline-block;
+      background: #eef0f2;
+      border: 1px solid #dcdcdc;
+      border-radius: 6px;
+      padding: 0px 8px;
+      font-size: 0.85rem;
+      color: #555;
+      box-shadow: 0 3px 0px #dcdcdc; /* 底部阴影制造立体质感 */
+      line-height: 1.6;
+      vertical-align: middle;
+      margin: 0 4px;
+      transform: translateY(-2px);
+    }
+
+    .more-info-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .palette-popup {
+      position: absolute;
+      top: 8px;
+      left: 12px;
+      width: 250px;
+      background: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+      padding: 16px;
+      z-index: 100;
+      display: flex; /* 确保弹性布局生效以支持子元素排版 */
+      flex-direction: column;
+      gap: 12px;
+      cursor: default;
+
+      /* 缩放动画核心代码 */
+      visibility: hidden;
+      opacity: 0;
+      transform: scale(0);
+      transform-origin: top left;
+      transition: transform 0.4s cubic-bezier(0.34, 1.25, 0.64, 1), 
+                  opacity 0.2s ease, 
+                  visibility 0.4s;
+    }
+
+    .palette-popup.show {
+      visibility: visible;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .palette-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .palette-colors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .color-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid rgba(0,0,0,0.06);
+     box-shadow:
+        inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.05),
+        inset 0 -3px 0 0 rgba(0, 0, 0, 0.02);
+      /* 移除了 transform 动画，仅保留阴影过渡 */
+      transition: box-shadow 0.1s ease;
+    }
+
+    .color-circle:hover {
+           box-shadow:
+        inset 0 -1.5px 0 0 rgba(255, 255, 255, 0.05),
+        inset 0 -3px 0 0 rgba(255, 255, 255, 0.02);
+    }
+
+    .btn-ungroup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      padding: 0 16px;
+      background: #f8f9fa;
+      border: 1px solid #e5e5e5;
+      border-radius: 17px;
+      font-size: 0.85rem;
+      color: #333;
+      cursor: pointer;
+      transition: background 0.2s;
+           box-shadow:
+        inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.05),
+        inset 0 -3px 0 0 rgba(0, 0, 0, 0.02);
+    }
+
+    .btn-ungroup:hover {
+      background: #efefef;
+    }
+    .pogget-window-content.collapsed {
+      display: none;
+    }

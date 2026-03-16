@@ -1,0 +1,322 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"width",
+				"max-width"
+			],
+			[
+				"transl",
+				"translateY()"
+			],
+			[
+				"vilinko-",
+				"vilinko-control"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"Arithmetic"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			],
+			[
+				"Pack",
+				"View Package File"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/233/Downloads/SearchPage (2).vue",
+		"/C/Users/233/Downloads/search.ts",
+		"/C/Users/233/Downloads/intelligence.ts",
+		"/D/创建/1/new/src/store/user.ts",
+		"/C/Users/233/AppData/Local/Temp/360zip$Temp/360$0/project.json",
+		"/D/创建/FishBoard/demo/demotext.html",
+		"/D/创建/Vertillusion/demo/demo/404pages/html/index.html",
+		"/D/创建/Vertillusion/demo/demo/404pages/html/vina.min.css",
+		"/C/Users/233/AppData/Local/Temp/360zip$Temp/360$0/LightFrame.vui",
+		"/C/Users/233/Downloads/static/static/css/main.css",
+		"/C/Users/233/source/repos/PoggetSortModel/group_model.data",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/index.html",
+		"/C/Users/233/AppData/Roaming/LightFrame/LocalStorage.vui",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/links/ulink.html",
+		"/C/Users/233/Downloads/static/templates/home.html",
+		"/C/Users/233/source/repos/vui.parser/test1.vui",
+		"/C/Users/233/source/repos/vui.parser/output.vina",
+		"/C/Users/233/source/repos/vui.parser/config.vina",
+		"/C/Users/233/AppData/Roaming/Vilinko/Pogget/Pogget.vina",
+		"/C/Users/233/Downloads/vilinko.min.css",
+		"/D/创建/Vertillusion/demo/demo/w_min/index.html",
+		"/D/创建/Vilinko/vilinko.com/index.html",
+		"/D/创建/Vilinko/vilinko.com/css/mainstyle.css",
+		"/D/创建/Vilinko/pogget.vilinko.com/index.html",
+		"/D/创建/Vilinko/pogget.vilinko.com/css/window.css",
+		"/C/Users/233/Downloads/BettaFish-3.0.0/config.py",
+		"/C/Users/233/Downloads/BettaFish-3.0.0/.env.example",
+		"/C/Users/233/Downloads/BettaFish-3.0.0/.env",
+		"/D/创建/Vilinko/pogget.vilinko.com/css/vinaui.min.css",
+		"/D/创建/Vertillusion/demo/demo/404pages/html/vina.min.test.css",
+		"/C/Users/233/Downloads/e070dc052cd539899c7056ce6a82452afdfca3",
+		"/D/创建/Vertillusion/examples/gltest.html",
+		"/D/创建/Vertillusion/examples/text.html",
+		"/D/创建/FishBoard/FishBoard/src/style.css",
+		"/D/创建/FishBoard/FishBoard/src/main.js",
+		"/D/创建/FishBoard/FishBoard/src/store/user.ts",
+		"/D/创建/FishBoard/FishBoard/src/vite-env.d.ts",
+		"/D/创建/FishBoard/FishBoard/src/components/LoginPage.vue",
+		"/D/创建/FishBoard/FishBoard/index.html",
+		"/D/创建/FishBoard/FishBoard/src/App.vue",
+		"/D/创建/FishBoard/FishBoard/src/components/CanvasBoard.vue",
+		"/D/创建/1/new/src/router/index.ts",
+		"/D/创建/1/new/src/views/InfoManage.vue",
+		"/D/创建/1/newback2/PolicyNewBackend/config.local.yaml",
+		"/D/创建/1/new/src/views/ModelSettings.vue",
+		"/D/创建/1/new/src/App.vue",
+		"/D/创建/1/new/src/types/auth.ts",
+		"/D/创建/1/new/src/api/index.ts",
+		"/D/创建/1/new/src/api/modules/search.ts",
+		"/D/创建/1/new/src/api/modules/index.ts",
+		"/D/创建/1/new/src/api/modules/intelligence.ts",
+		"/C/Users/233/Downloads/SearchPage (1).vue",
+		"/D/创建/1/new/src/stores/user.ts",
+		"/D/创建/1/new/src/components/HelloWorld.vue",
+		"/D/创建/1/new/src/views/Dashboard.vue",
+		"/D/创建/1/new/src/views/auth.vue",
+		"/D/创建/1/new/vite.config.ts",
+		"/D/创建/1/new/package.json",
+		"/D/创建/1/new/src/views/Profile.vue",
+		"/D/创建/DownloadBase/DownloadBase/.github/workflows/pages-deploy.yml",
+		"/C/Users/233/Downloads/releases.kdl",
+		"/D/创建/VinaApp/VinaApp/.gitattributes",
+		"/C/Users/233/Downloads/gflags-2.3.0.zip.asc",
+		"/D/QwQ/新建文件夹/CanvasBoard.vue",
+		"/C/Users/233/Downloads/index.html",
+		"/C/Users/233/Downloads/index111.html",
+		"/D/创建/DownloadBase/DownloadBase/metadata.json",
+		"/D/创建/DownloadBase/DownloadBase/404.html",
+		"/D/创建/1/new/src/components/SearchPage.vue",
+		"/D/创建/1/new/src/views/Teams.vue",
+		"/D/QwQ/board.ts",
+		"/D/创建/1/new/src/style.css",
+		"/D/创建/1/new/src/main.ts",
+		"/D/创建/FishBoard/FishBoard/src/components/BrushSetting.vue",
+		"/D/创建/FishBoard/FishBoard/src/store/board.ts",
+		"/D/创建/FishBoard/FishBoard/src/services/FileService.ts",
+		"/D/创建/FishBoard/FishBoard/src/components/LayerPanel.vue",
+		"/D/创建/FishBoard/FishBoard/src/components/Toolbar.vue",
+		"/D/创建/FishBoard/FishBoard/src/components/ColorPicker.vue",
+		"/D/创建/FishBoard/FishBoard/src/engine/types.ts",
+		"/D/创建/FishBoard/FishBoard/src/engine/renderer/PathRenderer.ts",
+		"/D/创建/Vertillusion/examples/Source Han Sans SC_Regular.json",
+		"/C/Users/233/Downloads/ffishboard-main/index.html",
+		"/C/Apps/Pogget.vina",
+		"/C/Users/233/AppData/Roaming/escrcpy/logs/main.log",
+		"/C/Users/233/AppData/Roaming/Vilinko/Pogget/DesktopContainer.vina",
+		"/C/ProgramData/AudioUTOPiA/Uninstall_McDSP_-_ML4000_v6.1.0.8.bat",
+		"/D/创建/1/new2/miniprogram/miniprogram/app.wxss",
+		"/C/Users/233/Downloads/demo3.html",
+		"/D/创建/VinaBuilder/VinaApp/VertexUI/vui.parser/test1.vui",
+		"/D/创建/LightFrame/LightFrame/VertexUI/vui.parser/test3.vui",
+		"/D/创建/LightFrame/LightFrame/VertexUI/vui.parser/test1.vui",
+		"/C/Users/233/AppData/Roaming/LightFrame/Components/LightFrame_Universal_Hotkey.vui",
+		"/C/Users/233/AppData/Roaming/LightFrame/Components/LightFrame_Universal_Board.vui",
+		"/D/LightFrame_Universal_Board.vui",
+		"/D/创建/LightFrame/Test/test.vui",
+		"/C/Users/233/AppData/Roaming/LightFrame/Components/LightFrame_StickyNotes.vui",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/links/sponsor.html",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/css/storystyle.css",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/css/mainstyle.css",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/css/storylight.css",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/stories/discover.html",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/links/oldulink.html",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/stories/secondstoryqwq.html",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/com/uninav.html",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/creation/creation.html",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/story.json",
+		"/D/创建/Vertillusion/vertillusion.com-gh-pages/stories/season2023.html",
+		"/C/Users/233/AppData/Roaming/Sublime Text/Packages/User/SublimeServer.sublime-settings",
+		"/D/创建/Vertillusion/demo/demo/w_min/vilinko.min.css",
+		"/C/Users/233/Downloads/vilinko_min_enhanced.css",
+		"/C/Users/233/Downloads/SearchPage.vue",
+		"/D/创建/Vertillusion/demo/demo/404pages/html/未标题-1.svg",
+		"/D/创建/FishBoard/FishBoard/src/engine/CanvasEngine.ts",
+		"/C/Users/233/source/repos/PoggetSortModel/cnn_model.bin",
+		"/C/Users/233/AppData/Local/Temp/360zip$Temp/360$1/project.json",
+		"/C/Users/233/Downloads/CanvasBoardOld.vue",
+		"/C/Users/233/Downloads/Source Han Sans SC_Regular.js",
+		"/C/Users/233/AppData/Roaming/Vilinko/Pogget/Pogget.vui",
+		"/C/Users/233/AppData/Roaming/Sublime Text/Packages/Default/copy_path.py",
+		"/C/Users/233/AppData/Local/Temp/360zip$Temp/360$2/LightFrame_Universal_Board.vui",
+		"/C/Users/233/AppData/Local/Temp/360zip$Temp/360$1/LightFrame_StickyNotes.vui",
+		"/C/Users/233/AppData/Local/Temp/360zip$Temp/360$0/LightFrame_MC_Chest.vui",
+		"/C/Users/233/AppData/Roaming/LightFrame/Components/LightFrame_MC_MultiChest.vui",
+		"/C/Users/233/AppData/Roaming/LightFrame/LightFrame.vui",
+		"/C/Users/233/AppData/Local/Temp/360zip$Temp/360$1/LightFrame_MC_MultiChest.vui",
+		"/C/Users/233/AppData/Local/Temp/360zip$Temp/360$4/LightFrame_StickyNotes.vui",
+		"/C/Users/233/AppData/Local/Temp/360zip$Temp/360$2/LightFrame_MCWidgets_Hotbar.vui"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "index.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 196.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
