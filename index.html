@@ -52,12 +52,27 @@
 
   <link rel="stylesheet" href="./css/vinaui.min.css">
   <link rel="stylesheet" href="./css/window.css">
-  <link rel="preconnect" href="https://fonts.googleapis.cn">
-  <link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin>
-  <link href="https://fonts.googleapis.cn/css2?family=Sansita+Swashed:wght@300..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <style>
+
+/* sansita-swashed-regular - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Sansita Swashed';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/sansita-swashed-v23-latin-regular.woff2') format('woff2'); 
+}
+/* sansita-swashed-700 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Sansita Swashed';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/sansita-swashed-v23-latin-700.woff2') format('woff2'); 
+}
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -585,12 +600,12 @@
     }
 
     .more-info-gallery-col {
-      flex: 1.5; /* 放大了 flex 占比，使图片更大 */
+      flex: 1.5; 
       opacity: 0; 
       transform: translateY(40px);
       transition: opacity 0.1s linear, transform 0.1s linear; 
       position: relative;
-      left: 8%; /* 强行偏右对齐，同时不影响 JS translateY 动画 */
+      left: 8%; 
     }
 
     /* 使用 Grid 精确控制大小 */
@@ -683,7 +698,7 @@
       }
       .more-info-gallery-col {
         width: 100%;
-        left: 0; /* 手机端取消左侧偏移 */
+        left: 0; 
       }
       
       /* 手机版改为横向滑动的画廊，高度一致 */
@@ -694,30 +709,30 @@
         gap: 15px;
         padding-bottom: 10px;
         -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; /* Firefox 隐藏滚动条 */
-        cursor: grab; /* 提示可拖拽 */
+        scrollbar-width: none; 
+        cursor: grab; 
       }
       .masonry-layout:active {
         cursor: grabbing;
       }
       .masonry-layout::-webkit-scrollbar {
-        display: none; /* Chrome/Safari/Opera 隐藏滚动条 */
+        display: none; 
       }
 
       .masonry-item:nth-child(1),
       .masonry-item:nth-child(2),
       .masonry-item:nth-child(3) {
-        grid-column: auto; /* 清除跨列属性 */
+        grid-column: auto; 
       }
       
       .masonry-item {
-        flex: 0 0 auto; /* 改为 auto 允许宽度按图片比例自适应 */
-        height: 260px; /* 统一高度 */
+        flex: 0 0 auto; 
+        height: 260px; 
         scroll-snap-align: center;
       }
       
       .masonry-item img {
-        width: auto; /* 覆盖原本的 100%，防止拉伸，让图片按高度比例自然显示宽度 */
+        width: auto; 
         height: 100%;
       }
 
@@ -805,6 +820,7 @@
       .together-buttons { gap: 15px; flex-direction: column; align-items: center;}
       .together-btn { width: 100%; max-width: 350px; justify-content: flex-start; }
     }
+
   </style>
 </head>
 <body>
@@ -987,7 +1003,7 @@
     </div>
   </section>
 
-  <section id="together" class="together-section">
+  <section id="together" class="together-section" >
     <h2 class="together-title">与我们一起共建 Pogget</h2>
     <p class="together-content">
       🎉你好呀！遇见你是我们最开心的事情！<br />"Pogget" 由 Pocket 和 Widget 的读音构成，意在为您提供能放进口袋般轻量、灵活的实用组件。<br />Pogget 的理念是以用户为本，由每一位用户共同支持。<br />若可以的话，感谢您为创作的旅途点亮的一盏盏的灯火！也可以积极向咱们提出您的灵感以及在使用过程中遇到的问题~
@@ -1010,6 +1026,27 @@
         赞助开发
       </a>
     </div>
+
+    <div style="width: 100%; margin-top: 12rem;">
+      <hr class="divider">
+      <div class="footer-content">
+        <p class="footer-text">
+          Pogget 更新日志
+        </p>
+        <a href="#changelog" style="color: inherit; text-decoration: none; display: flex;" aria-label="向下滚动到更新日志页面">
+          <svg class="arrow-icon" id="changelog-arrow" fill="none" stroke="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 5v14m0 0H5m14 0L5 5"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="changelog" class="changelog-section">
+    <h2 class="changelog-title">更新日志</h2>
+    <div id="log-container" class="log-container">
+      <p style="text-align:center; font-weight:bold; font-size: 1.1rem; color: #666;">正在加载日志...</p>
+    </div>
   </section>
 
   <div class="footer-copyright">
@@ -1030,9 +1067,150 @@
     <a href="https://down1.vilinko.com/download/pogget_arm64.zip" class="download-option">
       <i class="fa-brands fa-windows"></i> Pogget Windows ARM64
     </a>
+    <a href="#changelog" class="download-log-link" onclick="closeDownloadModal()">查看更新日志</a>
+  </div>
+
+  <div id="update-backdrop" class="download-backdrop"></div>
+  <div id="update-modal" class="update-modal">
+    <div class="update-modal-header" id="update-title">发现新版本！</div>
+    <div class="update-modal-body" id="update-content"></div>
+    <div class="update-modal-footer">
+      <button class="vilinko-control vilinko-button vilinko-round-full" id="update-close">稍后再说</button>
+      <a href="https://down1.vilinko.com/download/pogget.zip" class="vilinko-control vilinko-button vilinko-button-primary vilinko-round-full" id="update-download-btn">立即下载</a>
+    </div>
   </div>
 
 <script type="text/javascript" src="js/main.js"></script>
+
+<script>
+  // 关闭下载弹窗以便跳转到日志板块
+  function closeDownloadModal() {
+     const downloadCard = document.getElementById('download-card');
+     const downloadBackdrop = document.getElementById('download-backdrop');
+     if(downloadCard) downloadCard.classList.remove('show');
+     if(downloadBackdrop) downloadBackdrop.classList.remove('show');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+     const logContainer = document.getElementById('log-container');
+     const logUrl = 'https://down1.vilinko.com/res/logs/pogget_update.txt';
+     
+     let latestVersionData = null;
+
+     // 1. 获取并解析日志
+     fetch(logUrl)
+       .then(response => {
+          if (!response.ok) throw new Error('网络响应失败');
+          return response.text();
+       })
+       .then(text => {
+          // 按照两个或以上的换行符分割每一个日志块
+          const logs = text.split(/(?:\r?\n){2,}/).filter(block => block.trim() !== '');
+          logContainer.innerHTML = ''; 
+          
+          logs.forEach((block, index) => {
+             const lines = block.trim().split(/\r?\n/);
+             const headerLine = lines[0];
+             const contentLines = lines.slice(1).join('\n');
+             
+             // 解析格式: 112 | v0.1.1 | 2026-3-27 | Bug fix
+             const parts = headerLine.split('|').map(p => p.trim());
+             if(parts.length < 4) return; 
+             
+             const build = parseInt(parts[0], 10);
+             const version = parts[1];
+             const date = parts[2];
+             const title = parts[3];
+
+             // 记录最新版本以供校验
+             if(index === 0) {
+                latestVersionData = { build, version, date, title, content: contentLines };
+             }
+             
+             // 创建UI
+             const logItem = document.createElement('div');
+             logItem.className = 'log-item';
+             logItem.innerHTML = `
+               <div class="log-header">
+                 <div class="log-version-title">
+                   <span class="log-tag">${version}</span>
+                   <span>${title}</span>
+                 </div>
+                 <div class="log-date">Build ${build} &nbsp;&bull;&nbsp; ${date}</div>
+               </div>
+               <div class="log-content">${contentLines}</div>
+             `;
+             logContainer.appendChild(logItem);
+          });
+
+          // 2. 执行版本校验
+          checkVersion();
+       })
+       .catch(err => {
+          console.error('获取日志失败:', err);
+          logContainer.innerHTML = '<p style="text-align:center; color:red; font-weight:bold;">无法加载更新日志，请稍后重试。</p>';
+       });
+
+     // 检查更新功能
+     function checkVersion() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentVerStr = urlParams.get('ver');
+        if (!currentVerStr || !latestVersionData) return;
+        
+        const currentBuild = parseInt(currentVerStr, 10);
+        const updateModal = document.getElementById('update-modal');
+        const updateBackdrop = document.getElementById('update-backdrop');
+        const updateTitle = document.getElementById('update-title');
+        const updateContent = document.getElementById('update-content');
+        const updateDownloadBtn = document.getElementById('update-download-btn');
+        
+        if (!isNaN(currentBuild)) {
+           if (currentBuild >= latestVersionData.build) {
+              // 当前已是最新
+              updateTitle.textContent = '已经是最新版本！';
+              updateContent.innerHTML = `<p>您当前的版本 (Build ${currentBuild}) 已是最新版本啦！</p>`;
+              updateDownloadBtn.style.display = 'none'; 
+           } else {
+              // 发现新版本
+              updateTitle.textContent = `发现新版本：${latestVersionData.version}`;
+              updateContent.innerHTML = `
+                <p style="font-weight:bold; margin-bottom:8px;">${latestVersionData.title} <span style="font-size:0.85rem;color:#666;font-weight:normal;">(${latestVersionData.date})</span></p>
+                <div style="white-space:pre-wrap; font-size:0.9rem;">${latestVersionData.content}</div>
+              `;
+              updateDownloadBtn.style.display = 'inline-block';
+           }
+           
+           // 显示弹窗
+           updateBackdrop.classList.add('show');
+           updateModal.classList.add('show');
+        }
+     }
+
+     // 关闭更新弹窗逻辑
+     const closeUpdateModal = () => {
+        document.getElementById('update-modal').classList.remove('show');
+        document.getElementById('update-backdrop').classList.remove('show');
+     };
+     document.getElementById('update-close').addEventListener('click', closeUpdateModal);
+     document.getElementById('update-backdrop').addEventListener('click', closeUpdateModal);
+
+     // 日志箭头滚动动画逻辑 (同主页效果)
+     const changelogArrow = document.getElementById('changelog-arrow');
+     window.addEventListener('scroll', () => {
+        if (!changelogArrow) return;
+        const changelogSection = document.getElementById('changelog');
+        if (changelogSection) {
+            const rect = changelogSection.getBoundingClientRect();
+            // 当日志板块即将进入视口时旋转箭头
+            if (rect.top <= window.innerHeight * 0.8) {
+                changelogArrow.classList.add('rotated');
+            } else {
+                changelogArrow.classList.remove('rotated');
+            }
+        }
+     });
+  });
+</script>
 
 </body>
 </html>

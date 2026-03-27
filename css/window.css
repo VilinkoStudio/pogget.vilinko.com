@@ -168,3 +168,177 @@
     .pogget-window-content.collapsed {
       display: none;
     }
+    
+    /* ================= 新增：更新日志与检查更新弹窗样式 ================= */
+    .changelog-section {
+      min-height: 100vh;
+      padding: 4rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #ffffff; /* 已经修改为纯白色 */
+    }
+
+    .changelog-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -0.02em;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .log-container {
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .log-item {
+      background: #ffffff;
+      border: 2px solid #000000;
+      border-radius: 12px;
+      padding: 1.8rem 2rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: left;
+    }
+
+    .log-item:hover {
+      transform: translate(0px, -2px);
+    }
+
+    .log-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px dashed #eee;
+      padding-bottom: 1rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .log-version-title {
+      font-weight: 800;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .log-tag {
+      background: #000;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .log-date {
+      color: #666;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .log-content {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #333;
+      white-space: pre-wrap;
+    }
+
+    .download-log-link {
+      display: block;
+      text-align: left;
+      margin-top: 10px;
+      padding-left: 10px;
+      font-size: 0.85rem;
+      color: #666;
+      font-weight: 700;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .download-log-link:hover {
+      color: #000;
+    }
+
+    .update-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 12px;
+      padding: 2rem;
+      z-index: 10000;
+      width: 90%;
+      max-width: 450px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.34, 1.25, 0.64, 1), opacity 0.2s;
+    }
+
+    .update-modal.show {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    .update-modal-header {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+    }
+
+    .update-modal-body {
+      margin-bottom: 1.8rem;
+      font-size: 0.95rem;
+      color: #333;
+      max-height: 250px;
+      overflow-y: auto;
+      background: #f9f9f9;
+      padding: 1rem 1.2rem;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      line-height: 1.6;
+    }
+
+    .update-modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .update-btn {
+      padding: 0.6rem 1.5rem;
+      border: 2px solid #000;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: #000;
+      transition: all 0.2s ease;
+    }
+
+    .update-btn-primary {
+      background-color: #ffcc00;
+      box-shadow: 2px 2px 0px #000;
+    }
+
+    .update-btn-primary:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0px 0px 0px #000;
+    }
+
+    .update-btn-close {
+      background-color: #fff;
+    }
+
+    .update-btn-close:hover {
+      background-color: #f0f0f0;
+    }
