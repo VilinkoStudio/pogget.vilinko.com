@@ -860,7 +860,7 @@
       
       <div class="action-group">
         <a href="#" class="vilinko-control vilinko-button-primary vilinko-round-full vilinko-min-width vilinko-ext-height1 js-download-btn">下载</a>
-        <a class="pageTitleDes center-line" style="min-width: 105px;" href="https://www.vilinko.com/index.html#?link=links/sponsor.html">赞助 <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="#F31216" class="bi bi-heart-fill" viewBox="0 0 16 16">
+        <a class="pageTitleDes center-line" style="min-width: 105px;" href="https://afdian.com/@EnderMo">赞助 <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="#F31216" class="bi bi-heart-fill" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
         </svg></a>
       </div>
@@ -1130,6 +1130,13 @@
              // 创建UI
              const logItem = document.createElement('div');
              logItem.className = 'log-item';
+             
+             // 默认仅显示最新的三条
+             if (index >= 3) {
+                 logItem.style.display = 'none';
+                 logItem.classList.add('hidden-log');
+             }
+
              logItem.innerHTML = `
                <div class="log-header">
                  <div class="log-version-title">
@@ -1142,6 +1149,32 @@
              `;
              logContainer.appendChild(logItem);
           });
+
+          // 如果日志条数超过3条
+          if (logs.length > 3) {
+             const toggleDiv = document.createElement('div');
+             toggleDiv.style.textAlign = 'center';
+             toggleDiv.style.marginTop = '1.5rem';
+             
+             const toggleBtn = document.createElement('button');
+             toggleBtn.className = 'vilinko-control vilinko-button vilinko-round-full vilinko-inset-new vilinko-center-element';
+             toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-down"></i> 展开日志';
+             
+             let isExpanded = false;
+             toggleBtn.addEventListener('click', () => {
+                isExpanded = !isExpanded;
+                const hiddenLogs = logContainer.querySelectorAll('.hidden-log');
+                hiddenLogs.forEach(log => {
+                   log.style.display = isExpanded ? 'block' : 'none';
+                });
+                toggleBtn.innerHTML = isExpanded 
+                   ? '<i class="fa-solid fa-chevron-up"></i> 收起日志' 
+                   : '<i class="fa-solid fa-chevron-down"></i> 展开日志';
+             });
+             
+             toggleDiv.appendChild(toggleBtn);
+             logContainer.appendChild(toggleDiv);
+          }
 
           // 2. 执行版本校验
           checkVersion();

@@ -198,3 +198,7 @@
 {
     transform: translateY(20px);
 }
+.vilinko-center-element {
+    width: fit-content; 
+    margin: 0 auto;
+}
