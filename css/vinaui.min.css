@@ -122,7 +122,7 @@
     transition: box-shadow 0.2s ease, transform 0.2s ease;
     
     position: relative; 
-    /* 核心修复 1：开启 3D 渲染空间，打破二维层叠上下文遮挡的限制 */
+
     transform-style: preserve-3d; 
 }
 
