@@ -266,6 +266,16 @@
       color: #000;
     }
 
+    .info {
+      display: block;
+      text-align: left;
+      margin-top: 10px;
+      padding-left: 10px;
+      font-size: 0.85rem;
+      color: #666;
+      font-weight: 700;
+    }
+
     .update-modal {
       position: fixed;
       top: 50%;
