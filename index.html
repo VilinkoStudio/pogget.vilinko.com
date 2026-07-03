@@ -821,6 +821,73 @@
       .together-btn { width: 100%; max-width: 350px; justify-content: flex-start; }
     }
 
+.nav-capsule-group {
+      display: flex;
+      align-items: center;
+      background-color: var(--vilinko-bg-gray);
+      border: 1px solid var(--vilinko-border-color);
+      border-radius: 114px;
+      padding: 0 6px;
+      height: 46px; 
+      gap: 4px;
+      box-sizing: border-box;
+
+      box-shadow:
+        inset 0 -1px 0 0 rgba(0, 0, 0, 0.06),
+        inset 0 -2px 0 0 rgba(0, 0, 0, 0.02);
+    }
+    .nav-capsule-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--vilinko-text-main);
+      text-decoration: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 114px;
+      transition: all 0.2s ease;
+      font-size: 1.05rem;
+    }
+    .nav-capsule-item:hover {
+      background-color: rgba(0, 0, 0, 0.06);
+      color: var(--vilinko-primary-color); 
+    }
+    .nav-capsule-item:active {
+      transform: scale(0.92);
+    }
+
+    .nav-capsule-item {
+      position: relative; 
+    }
+    .nav-capsule-item[data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translate(-50%, 100%) scale(0.92);
+      transform-origin: top center;
+      background-color: #ffffff;
+      color: rgba(0, 0, 0, 0.65);
+      border: 1px solid var(--vilinko-border-color);
+      border-radius: 8px;
+      padding: 7px 11px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      line-height: 1.4;
+      white-space: pre-wrap; 
+      text-align: center;
+      z-index: 1100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      min-width: 100px;
+    }
+    .nav-capsule-item[data-tooltip]:hover::after {
+      opacity: 1;
+      transform: translate(-50%, 100%) scale(1) translateY(5px);
+      min-width: 100px;
+    }
   </style>
 </head>
 <body>
@@ -843,9 +910,16 @@
         <img src="./img/products.png" alt="Pogget Logo" class="placeholder-img">
       </div>
 
-      <div class="header-right">
+    <div class="header-right">
         <div class="ScrDivide"></div>
-        <a href="https://docs.vilinko.com/docs/pogget/" class="vilinko-control vilinko-button vilinko-round-full">DOCS</a>
+       <div class="nav-capsule-group">
+          <a href="https://github.com/EnderMo/PoggetCore" target="_blank" class="nav-capsule-item" data-tooltip="查看 PoggetCore 的仓库&#10;欢迎提交 issues~">
+            <i class="fa-brands fa-github"></i>
+          </a>
+           <a href="https://docs.vilinko.com/docs/pogget/" class="nav-capsule-item" data-tooltip="查看功能说明">
+            <i class="fa-solid fa-book"></i>
+          </a>
+        </div>
          <a href="#together" class="vilinko-control vilinko-button vilinko-round-full">用户参与</a>
          <a href="#" class="vilinko-control vilinko-button-primary vilinko-round-full js-download-btn">下载</a>
       </div>
@@ -1009,6 +1083,10 @@
       🎉你好呀！遇见你是我们最开心的事情！<br />"Pogget" 由 Pocket 和 Widget 的读音构成，意在为您提供能放进口袋般轻量、灵活的实用组件。<br />Pogget 的理念是以用户为本，由每一位用户共同支持。<br />若可以的话，感谢您为创作的旅途点亮的一盏盏的灯火！也可以积极向咱们提出您的灵感以及在使用过程中遇到的问题~
     </p>
     <div class="together-buttons">
+      <a href="https://github.com/EnderMo/PoggetCore/issues" target="_blank" class="together-btn vilinko-inset-new">
+        <span class="together-btn-tag vilinko-inset" style="background-color: #24292e; color: #ffffff;">GITHUB</span>
+        提交 ISSUE
+      </a>
       <a href="https://pd.qq.com/s/3c7gy3tck" target="_blank" class="together-btn vilinko-inset">
         <span class="together-btn-tag vilinko-inset" style="background-color: #B3D688;">TALK</span>
         我们的腾讯频道
