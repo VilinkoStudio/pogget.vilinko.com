@@ -1071,6 +1071,140 @@
       .together-btn { width: 100%; max-width: 350px; justify-content: flex-start; }
     }
 
+    .sponsor-strip {
+      width: 100%;
+      margin-top: calc(6rem - 25px);
+      display: grid;
+      grid-template-columns: auto minmax(160px, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      color: #171717;
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.35s ease, visibility 0s linear 0s;
+    }
+
+    .sponsor-strip.is-unavailable {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+    }
+
+    .sponsor-strip-label,
+    .sponsor-strip-count {
+      white-space: nowrap;
+    }
+
+    .sponsor-marquee {
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+      padding: 4px 0;
+    }
+
+    .sponsor-marquee::before,
+    .sponsor-marquee::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 46px;
+      z-index: 2;
+      pointer-events: none;
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+
+    .sponsor-marquee::before {
+      left: 0;
+      -webkit-mask-image: linear-gradient(to right, #000 30%, transparent 100%);
+      mask-image: linear-gradient(to right, #000 30%, transparent 100%);
+    }
+
+    .sponsor-marquee::after {
+      right: 0;
+      -webkit-mask-image: linear-gradient(to left, #000 30%, transparent 100%);
+      mask-image: linear-gradient(to left, #000 30%, transparent 100%);
+    }
+
+    .sponsor-track {
+      --sponsor-duration: 28s;
+      display: flex;
+      width: max-content;
+      will-change: transform;
+    }
+
+    .sponsor-marquee.is-moving .sponsor-track {
+      animation: sponsor-scroll var(--sponsor-duration) linear infinite;
+    }
+
+    .sponsor-marquee:hover .sponsor-track,
+    .sponsor-marquee:focus-within .sponsor-track {
+      animation-play-state: paused;
+    }
+
+    .sponsor-track-group {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      gap: 10px;
+      padding-right: 10px;
+    }
+
+    .sponsor-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      padding: 9px 17px;
+      border: 0;
+      border-radius: 999px;
+      background: #e9e9e9;
+      color: #171717;
+      font-size: 0.94rem;
+      font-weight: 400;
+      line-height: 1.2;
+      white-space: nowrap;
+      box-shadow: none;
+    }
+
+    .together-changelog-link {
+      width: 100%;
+      margin-top: calc(6rem - 25px);
+    }
+
+    @keyframes sponsor-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 720px) {
+      .sponsor-strip {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 10px;
+        margin-top: calc(6rem - 24px);
+        font-size: 0.92rem;
+      }
+      .sponsor-strip-label-full { display: none; }
+      .sponsor-marquee::before,
+      .sponsor-marquee::after { width: 30px; }
+      .sponsor-pill { min-height: 40px; padding: 8px 15px; font-size: 0.88rem; }
+      .together-changelog-link { margin-top: calc(6rem - 24px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sponsor-marquee {
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .sponsor-marquee::-webkit-scrollbar { display: none; }
+      .sponsor-marquee .sponsor-track { animation: none !important; }
+      .sponsor-marquee .sponsor-track-group[aria-hidden="true"] { display: none; }
+    }
+
 .nav-capsule-group {
       display: flex;
       align-items: center;
@@ -1470,7 +1604,22 @@
       </a>
     </div>
 
-    <div style="width: 100%; margin-top: 12rem;">
+    <div class="sponsor-strip" id="sponsor-strip" aria-label="Pogget 赞助者名单">
+      <span class="sponsor-strip-label">❤️ <span class="sponsor-strip-label-full">感谢</span></span>
+      <div class="sponsor-marquee" id="sponsor-marquee" tabindex="0" aria-label="赞助者名单滚动预览">
+        <div class="sponsor-track" id="sponsor-track">
+          <div class="sponsor-track-group" data-sponsor-group="primary">
+            <span class="sponsor-pill">名单加载中</span>
+          </div>
+          <div class="sponsor-track-group" data-sponsor-group="duplicate" aria-hidden="true">
+            <span class="sponsor-pill">名单加载中</span>
+          </div>
+        </div>
+      </div>
+      <span class="sponsor-strip-count" id="sponsor-count" aria-live="polite">等 ... 位赞助者</span>
+    </div>
+
+    <div class="together-changelog-link">
       <hr class="divider">
       <div class="footer-content">
         <p class="footer-text">
@@ -1689,6 +1838,15 @@
         }
      });
   });
+</script>
+
+<script>
+  window.addEventListener('load', () => {
+    const sponsorScript = document.createElement('script');
+    sponsorScript.src = 'js/sponsors.js';
+    sponsorScript.async = true;
+    document.body.appendChild(sponsorScript);
+  }, { once: true });
 </script>
 
 </body>
