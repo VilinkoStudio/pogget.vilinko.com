@@ -151,11 +151,170 @@
         win2.querySelector('.pogget-color-tag').style.border = '1px solid rgba(0,0,0,0.1)';
       }
 
-      // === 滚动监听控制瀑布流图库透明度与位移动画 ===
-      const footerTextElement = document.querySelector('.footer-text');
-      const scrollGallery = document.getElementById('scrollGallery');
+      // === 功能轮播：5 秒自动切换，支持分页与暂停 ===
+      const featureCarousel = document.getElementById('featureCarousel');
+      if (featureCarousel) {
+        const slides = Array.from(featureCarousel.querySelectorAll('.feature-carousel-slide'));
+        const dots = Array.from(featureCarousel.querySelectorAll('.feature-carousel-dot'));
+        const toggle = featureCarousel.querySelector('.feature-carousel-toggle');
+        let currentSlide = 0;
+        let autoTimer = null;
+        let isPlaying = true;
+        let isTransitioning = false;
+        let highlightAnimationFrame = null;
+        const carouselDuration = 5000;
 
-      if (footerTextElement && scrollGallery) {
+        const highlightCharsBySlide = slides.map((slide) => {
+          const chars = [];
+          const targets = slide.querySelectorAll('.more-info-title');
+
+          targets.forEach((target) => {
+            const walker = document.createTreeWalker(target, NodeFilter.SHOW_TEXT);
+            const textNodes = [];
+            let node;
+            while ((node = walker.nextNode())) textNodes.push(node);
+
+            textNodes.forEach((textNode) => {
+              const fragment = document.createDocumentFragment();
+              Array.from(textNode.nodeValue).forEach((character) => {
+                const charSpan = document.createElement('span');
+                charSpan.className = 'feature-highlight-char';
+                charSpan.textContent = character;
+                fragment.appendChild(charSpan);
+                if (!/\s/.test(character)) chars.push(charSpan);
+              });
+              textNode.parentNode.replaceChild(fragment, textNode);
+            });
+          });
+
+          return chars;
+        });
+
+        const updateHighlight = (slideIndex, progress) => {
+          const chars = highlightCharsBySlide[slideIndex] || [];
+          if (!chars.length) return;
+          const highlightIndex = Math.min(chars.length - 1, Math.floor(progress * chars.length));
+          chars.forEach((char, charIndex) => {
+            char.classList.toggle('is-highlighted', charIndex <= highlightIndex);
+          });
+        };
+
+        const animateHighlight = (slideIndex) => {
+          if (highlightAnimationFrame !== null) {
+            window.cancelAnimationFrame(highlightAnimationFrame);
+            highlightAnimationFrame = null;
+          }
+          const chars = highlightCharsBySlide[slideIndex] || [];
+          if (!chars.length) return;
+          const startTime = performance.now();
+          const tick = (now) => {
+            const progress = Math.min(1, (now - startTime) / carouselDuration);
+            updateHighlight(slideIndex, progress);
+            if (progress < 1) {
+              highlightAnimationFrame = window.requestAnimationFrame(tick);
+            } else {
+              highlightAnimationFrame = null;
+            }
+          };
+          updateHighlight(slideIndex, 0);
+          highlightAnimationFrame = window.requestAnimationFrame(tick);
+        };
+
+        const updateIndicators = () => {
+          slides.forEach((slide, slideIndex) => {
+            slide.setAttribute('aria-hidden', slideIndex === currentSlide ? 'false' : 'true');
+          });
+          dots.forEach((dot, dotIndex) => {
+            const active = dotIndex === currentSlide;
+            dot.classList.toggle('is-active', active);
+            dot.setAttribute('aria-current', active ? 'true' : 'false');
+          });
+        };
+
+        const updateSlide = (index, immediate = false) => {
+          const nextSlide = (index + slides.length) % slides.length;
+
+          if (immediate) {
+            currentSlide = nextSlide;
+            slides.forEach((slide, slideIndex) => {
+              slide.classList.toggle('is-active', slideIndex === currentSlide);
+              slide.classList.remove('is-fading-out');
+            });
+            updateIndicators();
+            return;
+          }
+
+          if (nextSlide === currentSlide || isTransitioning) return;
+          isTransitioning = true;
+          animateHighlight(nextSlide);
+
+          const outgoingSlide = slides[currentSlide];
+          outgoingSlide.classList.add('is-fading-out');
+          outgoingSlide.classList.remove('is-active');
+
+          window.setTimeout(() => {
+            outgoingSlide.classList.remove('is-fading-out');
+            currentSlide = nextSlide;
+            updateIndicators();
+
+            const incomingSlide = slides[currentSlide];
+            void incomingSlide.offsetWidth;
+            incomingSlide.classList.add('is-active');
+
+            window.setTimeout(() => {
+              isTransitioning = false;
+            }, 350);
+          }, 350);
+        };
+
+        const stopAuto = () => {
+          if (autoTimer !== null) {
+            window.clearInterval(autoTimer);
+            autoTimer = null;
+          }
+        };
+
+        const startAuto = () => {
+          stopAuto();
+          autoTimer = window.setInterval(() => updateSlide(currentSlide + 1), carouselDuration);
+        };
+
+        dots.forEach((dot) => {
+          dot.addEventListener('click', () => {
+            updateSlide(Number(dot.dataset.slide) || 0);
+            if (isPlaying) startAuto();
+          });
+        });
+
+        if (toggle) {
+          toggle.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            toggle.setAttribute('aria-pressed', isPlaying ? 'false' : 'true');
+            toggle.setAttribute('aria-label', isPlaying ? '暂停轮播' : '播放轮播');
+            toggle.innerHTML = `<i class="fa-solid fa-${isPlaying ? 'pause' : 'play'}" aria-hidden="true"></i>`;
+            if (isPlaying) {
+              animateHighlight(currentSlide);
+              startAuto();
+            } else {
+              stopAuto();
+              if (highlightAnimationFrame !== null) {
+                window.cancelAnimationFrame(highlightAnimationFrame);
+                highlightAnimationFrame = null;
+              }
+            }
+          });
+        }
+
+        updateSlide(0, true);
+        animateHighlight(0);
+        startAuto();
+      }
+
+      // === 滚动监听控制图库透明度与位移动画 ===
+      const footerTextElement = document.querySelector('.footer-text');
+      const scrollGalleries = document.querySelectorAll('.more-info-gallery-col');
+
+      if (footerTextElement && scrollGalleries.length) {
         const handleScroll = () => {
           const rect = footerTextElement.getBoundingClientRect();
           const viewportHeight = window.innerHeight;
@@ -167,9 +326,11 @@
           let progress = (startY - rect.top) / (startY - targetY);
           progress = Math.max(0, Math.min(1, progress));
           
-          scrollGallery.style.opacity = progress;
           const translateY = 40 - (40 * progress);
-          scrollGallery.style.transform = `translateY(${translateY}px)`;
+          scrollGalleries.forEach((gallery) => {
+            gallery.style.opacity = progress;
+            gallery.style.transform = `translateY(${translateY}px)`;
+          });
         };
 
         handleScroll(); 
@@ -177,8 +338,8 @@
       }
 
       // === 手机端画廊鼠标拖拽事件 ===
-      const gallerySlider = document.querySelector('.masonry-layout');
-      if (gallerySlider) {
+      const gallerySliders = document.querySelectorAll('.masonry-layout');
+      gallerySliders.forEach((gallerySlider) => {
         let isDown = false;
         let startX;
         let scrollLeft;
@@ -214,7 +375,7 @@
             gallerySlider.scrollLeft += e.deltaY || e.deltaX;
           }
         }, { passive: false });
-      }
+      });
 
       // === 精准生成居中组件交互 (终极强制展示修复版) ===
       const createBtn = document.getElementById('createWidgetBtn');
