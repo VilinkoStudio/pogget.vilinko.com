@@ -10,20 +10,36 @@
     return pill;
   };
 
+  const sampleSponsors = (names, limit) => {
+    const shuffled = [...names];
+    for (let index = shuffled.length - 1; index > 0; index -= 1) {
+      const randomIndex = Math.floor(Math.random() * (index + 1));
+      [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+    }
+    return shuffled.slice(0, limit);
+  };
+
   const startSponsors = async () => {
     const sponsorStrip = document.getElementById('sponsor-strip');
     const marquee = document.getElementById('sponsor-marquee');
     const track = document.getElementById('sponsor-track');
     const count = document.getElementById('sponsor-count');
-    if (!sponsorStrip || !marquee || !track || !count) return;
+    const viewIndicator = document.getElementById('sponsor-view-indicator');
+    const fullPanel = document.getElementById('sponsor-full-panel');
+    const fullScroll = document.getElementById('sponsor-full-scroll');
+    const fullList = document.getElementById('sponsor-full-list');
+    if (!sponsorStrip || !marquee || !track || !count
+      || !viewIndicator || !fullPanel || !fullScroll || !fullList) return;
 
     let resizeFrame = null;
+    let fullSponsors = [];
+    let fullListRendered = false;
+    let fullListRendering = false;
 
     const updateMotion = () => {
       const primaryGroup = track.querySelector('[data-sponsor-group="primary"]');
-      const hasOverflow = primaryGroup
-        && primaryGroup.scrollWidth > marquee.clientWidth + 4;
-      marquee.classList.toggle('is-moving', Boolean(hasOverflow));
+      const canMove = primaryGroup && primaryGroup.childElementCount > 1;
+      marquee.classList.toggle('is-moving', Boolean(canMove));
     };
 
     const renderSponsors = (names) => {
@@ -38,6 +54,62 @@
     window.addEventListener('resize', () => {
       if (resizeFrame !== null) window.cancelAnimationFrame(resizeFrame);
       resizeFrame = window.requestAnimationFrame(updateMotion);
+    });
+
+    const scheduleBatch = (callback) => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(callback, { timeout: 300 });
+      } else {
+        window.setTimeout(() => callback({ timeRemaining: () => 8 }), 0);
+      }
+    };
+
+    const renderFullSponsors = () => {
+      if (fullListRendered || fullListRendering) return;
+      fullListRendering = true;
+      fullList.replaceChildren();
+
+      let index = 0;
+      const renderBatch = (deadline) => {
+        const fragment = document.createDocumentFragment();
+        let renderedThisBatch = 0;
+
+        while (index < fullSponsors.length
+          && renderedThisBatch < 36
+          && (renderedThisBatch < 12 || deadline.timeRemaining() > 2)) {
+          fragment.appendChild(createSponsorPill(fullSponsors[index]));
+          index += 1;
+          renderedThisBatch += 1;
+        }
+        fullList.appendChild(fragment);
+
+        if (index < fullSponsors.length) {
+          scheduleBatch(renderBatch);
+          return;
+        }
+
+        fullListRendering = false;
+        fullListRendered = true;
+      };
+
+      scheduleBatch(renderBatch);
+    };
+
+    const toggleFullPanel = () => {
+      if (sponsorStrip.getAttribute('aria-disabled') === 'true') return;
+      const willOpen = sponsorStrip.getAttribute('aria-expanded') !== 'true';
+      sponsorStrip.setAttribute('aria-expanded', String(willOpen));
+      fullPanel.classList.toggle('is-open', willOpen);
+      fullPanel.setAttribute('aria-hidden', String(!willOpen));
+      viewIndicator.querySelector('span').textContent = willOpen ? '收起' : '查看';
+      if (willOpen) renderFullSponsors();
+    };
+
+    sponsorStrip.addEventListener('click', toggleFullPanel);
+    sponsorStrip.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      toggleFullPanel();
     });
 
     const controller = new AbortController();
@@ -58,18 +130,21 @@
       const allSponsors = result.data.sponsors
         .filter((name) => typeof name === 'string' && name.trim())
         .map((name) => name.trim());
-      const visibleSponsors = [...new Set(
-        allSponsors.filter((name) => !name.includes('爱发电'))
-      )];
-      const previewSponsors = visibleSponsors
-        .slice(-SPONSOR_PREVIEW_LIMIT)
-        .reverse();
+      const namedSponsors = allSponsors.filter((name) => !name.includes('爱发电'));
+      const afdianSponsors = allSponsors.filter((name) => name.includes('爱发电'));
+      const visibleSponsors = [...new Set(namedSponsors)];
+      const previewSponsors = sampleSponsors(visibleSponsors, SPONSOR_PREVIEW_LIMIT);
       if (!previewSponsors.length) {
         throw new Error('没有可展示的赞助者名称');
       }
 
       renderSponsors(previewSponsors);
+      fullSponsors = [
+        ...new Set(namedSponsors),
+        ...new Set(afdianSponsors)
+      ];
       count.textContent = `等 ${allSponsors.length} 位赞助者`;
+      sponsorStrip.setAttribute('aria-disabled', 'false');
       sponsorStrip.classList.remove('is-unavailable');
       sponsorStrip.setAttribute('aria-hidden', 'false');
     } catch (error) {
