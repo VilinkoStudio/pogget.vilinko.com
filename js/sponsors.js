@@ -1,4 +1,5 @@
 (() => {
+  const t = (key, ...args) => window.PoggetI18n ? window.PoggetI18n.t(key, ...args) : key;
   const SPONSORS_API_URL = 'https://api.vilinko.com/sponsors/all';
   const SPONSOR_PREVIEW_LIMIT = 32;
   const REQUEST_TIMEOUT = 10000;
@@ -43,7 +44,7 @@
     };
 
     const renderSponsors = (names) => {
-      const displayNames = names.length ? names : ['感谢每一份支持'];
+      const displayNames = names.length ? names : [t('thanks')];
       track.querySelectorAll('.sponsor-track-group').forEach((group) => {
         group.replaceChildren(...displayNames.map(createSponsorPill));
       });
@@ -101,7 +102,7 @@
       sponsorStrip.setAttribute('aria-expanded', String(willOpen));
       fullPanel.classList.toggle('is-open', willOpen);
       fullPanel.setAttribute('aria-hidden', String(!willOpen));
-      viewIndicator.querySelector('span').textContent = willOpen ? '收起' : '查看';
+      viewIndicator.querySelector('span').textContent = willOpen ? t('collapse') : t('view');
       if (willOpen) renderFullSponsors();
     };
 
@@ -143,7 +144,7 @@
         ...new Set(namedSponsors),
         ...new Set(afdianSponsors)
       ];
-      count.textContent = `等 ${allSponsors.length} 位赞助者`;
+      count.textContent = t('sponsorCount', allSponsors.length);
       sponsorStrip.setAttribute('aria-disabled', 'false');
       sponsorStrip.classList.remove('is-unavailable');
       sponsorStrip.setAttribute('aria-hidden', 'false');

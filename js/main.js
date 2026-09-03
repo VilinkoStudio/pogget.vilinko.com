@@ -1,3 +1,79 @@
+    const POGGET_I18N = (() => {
+      const locales = {
+        'zh-CN': {
+          pageTitle: 'Pogget | 轻量强大的文件收纳管理工具', subHero: '一款完全免费、由每一个用户支持的轻量文件交互效率工具。',
+          metaDescription: '这里是 Pogget 的官方网站，欢迎探索 Pogget！这是一款完全免费、轻量、强大且由每一个用户支持的文件交互管理工具，专注于以高灵活性提升工作效率。',
+          navParticipate: '用户参与', download: '下载', sponsor: '赞助', explore: '探索更多 Pogget',
+          scrollMore: '向下滚动了解更多', together: '与我们一起共建 Pogget', changelog: 'Pogget 更新日志',
+          demo: '本窗口仅作为 DEMO 演示', pressL: '按下', setGroup: '来设置编组', grouped: '编组后可按住',
+          temporarilyUngroup: '临时解除编组', unnamed: '未命名', palette: '调色板', ungroup: '未编组',
+          featureLabel: 'Pogget 功能介绍', powerful: '强大、灵活、高效。', mapped: '映射收纳盒', mappedDesc: '不搬运文件。只建立连接。把藏在电脑各处的常用文件拖进来，就能直接在桌面打开。不占额外空间，用完随时清空，轻盈而无负担。',
+          regular: '普通收纳盒', regularDesc: '桌面的小抽屉，为日常工作准备。文件会被真实地移入其中，你可以在这里重命名、删除或归档。把今天需要处理的资料统统放进来，安稳又踏实。',
+          target: '目标收纳盒', targetDesc: '类似普通收纳盒，但将收纳盒与硬盘的现有文件夹直接绑定。你在收纳盒上怎么拖拽、怎么整理，真实的文件夹里就怎么变化。不用来回切窗口，双向同步，所见即所得。',
+          magnet: '磁力访问窗', magnetDesc: '当打开/保存对话框触发时会立刻吸附在窗口旁边。访问窗的内容与收纳盒完全一致且互通。当拿不定主意或者文件仅需临时存放时，还可以创建隐身收纳盒作为临时工作区，随时访问。',
+          quick: '快速面板', quickDesc: '所有收纳盒的内容都会出现在这里。可以在需要的时候快速按下快捷键触发，告别繁琐的文件查找操作。同时还可以拆分面板，如浏览器一般管理文件。', createWidget: '创建组件',
+          groupingTitle: '同色编组，便捷管理', sameGroup: '同色编组', sameGroupDesc: '相同标签颜色的收纳盒会进行吸附并一起移动，提供更加连续的文件管理体验。', merge: '合并同色收纳盒', mergeDesc: '相同标签颜色的收纳盒可以合并为一个大收纳盒以标签或分组的形式展示，随时合并与拆分还原。', groupKey: '编组键', groupKeyDesc: '相同颜色标签的收纳盒可作为一个临时工作区，使用特定快捷键置顶、合并或者还原，随时召唤收纳盒。',
+          freedomTitle: '高度自由，随你所想', customSort: '自定义排序方式', customSortDesc: '支持列表、网格等布局模式，可以自由排序，也可按文件名、大小、时间进行排列。', customLayout: '自定义布局', customLayoutDesc: '自定义的图标间隔、大小、行列数量，并可按您的需求决定分页方式。', personalization: '个性化', personalizationDesc: '可以为全部收纳盒或单独收纳盒设置你喜欢背景、元素以及交互行为。', themes: '色彩主题', themesDesc: 'Pogget 内置多种色彩主题，选择一个你喜爱的主题，开启舒适的收纳体验！',
+          contributeText: '🎉你好呀！遇见你是我们最开心的事情！<br>"Pogget" 由 Pocket 和 Widget 的读音构成，意在为您提供能放进口袋般轻量、灵活的实用组件。<br>Pogget 的理念是以用户为本，由每一位用户共同支持。<br>若可以的话，感谢您为创作的旅途点亮的一盏盏的灯火！也可以积极向咱们提出您的灵感以及在使用过程中遇到的问题~',
+          submitIssue: '提交 ISSUE', channel: '我们的腾讯频道', support: '服务支持', follow: '追踪B站', sponsorDev: '赞助开发',
+          sponsorList: '查看完整赞助者名单', sponsorPreview: '赞助者名单滚动预览', thanks: '感谢', loadingSponsors: '名单加载中', sponsorCount: n => `等 ${n} 位赞助者`, view: '查看', collapse: '收起',
+          fullSponsors: '完整赞助者名单，可纵向滚动', loadSponsors: '点击查看后加载完整名单', loadingLogs: '正在加载日志...', expandLogs: '展开日志', collapseLogs: '收起日志', updateAvailable: '发现新版本！',
+          logsError: '无法加载更新日志，请稍后重试。', latest: '已经是最新版本！', latestBody: n => `您当前的版本 (Build ${n}) 已是最新版本啦！`, newVersion: v => `发现新版本：${v}`, close: '关闭', downloadNow: '立即下载',
+          windowsRecommended: 'Pogget Windows x64 (推荐)', windowsArm: 'Pogget Windows ARM64', pdbDebug: 'Pogget PDB x64 (DEBUG)', downloadLogs: '查看更新日志',
+          carouselControl: '轮播控制', showPage: n => `显示第 ${n} 页`, pause: '暂停轮播', play: '播放轮播',
+          altShare: 'Pogget 预览', altComponent1: 'Pogget 组件 1', altComponent2: 'Pogget 组件 2', altMerged: '同色收纳盒合并示意', altTag: '标签管理示意', altSettings: 'Pogget 个性化设置面板', altList: 'Pogget 列表布局', altGrid: 'Pogget 自由网格布局', altPaged: 'Pogget 分页网格布局'
+        },
+        'zh-TW': {
+          pageTitle: 'Pogget｜輕量強大的檔案收納管理工具', subHero: '一款完全免費、由每位使用者支持的輕量檔案互動效率工具。', metaDescription: '這裡是 Pogget 的官方網站，歡迎探索 Pogget！這是一款完全免費、輕量、強大且由每位使用者支持的檔案互動管理工具，專注以高靈活性提升工作效率。',
+          navParticipate: '使用者參與', download: '下載', sponsor: '贊助', explore: '探索更多 Pogget', scrollMore: '向下捲動了解更多', together: '與我們一起共建 Pogget', changelog: 'Pogget 更新日誌', demo: '本視窗僅作為 DEMO 示範', pressL: '按下', setGroup: '來設定編組', grouped: '編組後可按住', temporarilyUngroup: '暫時解除編組', unnamed: '未命名', palette: '調色盤', ungroup: '未編組', featureLabel: 'Pogget 功能介紹', powerful: '強大、靈活、高效。', mapped: '映射收納盒', mappedDesc: '不搬運檔案，只建立連結。把散落在電腦各處的常用檔案拖進來，就能直接在桌面開啟。不佔額外空間，用完隨時清空，輕盈無負擔。', regular: '一般收納盒', regularDesc: '桌面上的小抽屜，為日常工作準備。檔案會實際移入其中，你可以在這裡重新命名、刪除或封存。把今天要處理的資料都放進來，安穩又踏實。', target: '目標收納盒', targetDesc: '類似一般收納盒，但會直接綁定硬碟上的現有資料夾。你在收納盒上如何拖曳、整理，實際資料夾就如何變化。雙向同步，所見即所得。', magnet: '磁力存取窗', magnetDesc: '開啟或儲存對話框觸發時，會立即吸附在視窗旁。存取窗內容與收納盒完全一致並互通，也能建立隱形收納盒作為臨時工作區。', quick: '快速面板', quickDesc: '所有收納盒的內容都會出現在這裡。需要時按下快捷鍵即可快速喚出，告別繁瑣的檔案搜尋，也能像瀏覽器一樣拆分面板管理檔案。', createWidget: '建立元件', groupingTitle: '同色編組，便利管理', sameGroup: '同色編組', sameGroupDesc: '標籤顏色相同的收納盒會彼此吸附並一起移動，帶來更連貫的檔案管理體驗。', merge: '合併同色收納盒', mergeDesc: '標籤顏色相同的收納盒可合併成一個大收納盒，以標籤或群組形式呈現，隨時合併、拆分與還原。', groupKey: '編組鍵', groupKeyDesc: '相同顏色標籤的收納盒可作為臨時工作區，使用指定快捷鍵置頂、合併或還原。', freedomTitle: '高度自由，隨心所想', customSort: '自訂排序方式', customSortDesc: '支援清單、網格等版面模式，可自由排序，也能依檔名、大小或時間排列。', customLayout: '自訂版面', customLayoutDesc: '自訂圖示間距、大小與行列數量，並依需求決定分頁方式。', personalization: '個人化', personalizationDesc: '可為全部或個別收納盒設定喜愛的背景、元素與互動行為。', themes: '色彩主題', themesDesc: 'Pogget 內建多種色彩主題，選擇喜愛的主題，享受舒適的收納體驗！', contributeText: '🎉你好呀！遇見你是我們最開心的事！<br>「Pogget」由 Pocket 和 Widget 的讀音組成，希望提供如口袋般輕量、靈活的實用元件。<br>Pogget 以使用者為本，由每一位使用者共同支持。<br>感謝你為創作旅程點亮一盞盞燈火，也歡迎分享靈感與使用時遇到的問題～', submitIssue: '提交 ISSUE', channel: '我們的騰訊頻道', support: '服務支援', follow: '追蹤 B 站', sponsorDev: '贊助開發', sponsorList: '查看完整贊助者名單', sponsorPreview: '贊助者名單滾動預覽', thanks: '感謝', loadingSponsors: '名單載入中', sponsorCount: n => `共 ${n} 位贊助者`, view: '查看', collapse: '收起', fullSponsors: '完整贊助者名單，可垂直捲動', loadSponsors: '點擊查看後載入完整名單', loadingLogs: '正在載入日誌…', expandLogs: '展開日誌', collapseLogs: '收起日誌', logsError: '無法載入更新日誌，請稍後再試。', latest: '已是最新版本！', latestBody: n => `你目前的版本（Build ${n}）已是最新版本。`, newVersion: v => `發現新版本：${v}`, close: '關閉', downloadNow: '立即下載', windowsRecommended: 'Pogget Windows x64（推薦）', windowsArm: 'Pogget Windows ARM64', pdbDebug: 'Pogget PDB x64（DEBUG）', downloadLogs: '查看更新日誌', carouselControl: '輪播控制', showPage: n => `顯示第 ${n} 頁`, pause: '暫停輪播', play: '播放輪播', altShare: 'Pogget 預覽', altComponent1: 'Pogget 元件 1', altComponent2: 'Pogget 元件 2', altMerged: '同色收納盒合併示意', altTag: '標籤管理示意', altSettings: 'Pogget 個人化設定面板', altList: 'Pogget 清單版面', altGrid: 'Pogget 自由網格版面', altPaged: 'Pogget 分頁網格版面'
+        },
+        'en-US': {
+          pageTitle: 'Pogget | A Lightweight, Powerful File Organizer', subHero: 'A free, lightweight file interaction tool supported by every user.', metaDescription: 'Welcome to the official Pogget website. Pogget is a free, lightweight and powerful file interaction tool shaped by its community, built to make everyday work more flexible and efficient.', navParticipate: 'Get Involved', download: 'Download', sponsor: 'Sponsor', explore: 'Explore More Pogget', scrollMore: 'Scroll down to learn more', together: 'Build Pogget With Us', changelog: 'Pogget Changelog', demo: 'This window is for DEMO purposes only', pressL: 'Press', setGroup: 'to set a group', grouped: 'After grouping, hold', temporarilyUngroup: 'to temporarily ungroup', unnamed: 'Unnamed', palette: 'Palette', ungroup: 'Ungroup', featureLabel: 'Pogget features', powerful: 'Powerful, flexible, efficient.', mapped: 'Linked Box', mappedDesc: 'Files stay where they are. Pogget creates a link, so you can drag frequently used files from anywhere on your PC and open them right from the desktop. No extra storage, no clutter.', regular: 'Regular Box', regularDesc: 'A small desktop drawer for everyday work. Files are moved here for real, ready to be renamed, deleted or archived when you need them.', target: 'Folder Box', targetDesc: 'Like a regular box, but linked directly to an existing folder on your drive. Organize it here and the real folder updates in sync, both ways.', magnet: 'Magnet Access Window', magnetDesc: 'It snaps beside open/save dialogs as soon as they appear. Its contents stay in sync with your boxes, and hidden boxes make handy temporary workspaces.', quick: 'Quick Panel', quickDesc: 'Every box is available here. Trigger it with a shortcut when you need it, skip tedious file hunting, and split panels to manage files like you would in a browser.', createWidget: 'Create Widgets', groupingTitle: 'Color Groups, Easier Management', sameGroup: 'Color Groups', sameGroupDesc: 'Boxes with the same tag color stick together and move as one for a smoother file-management flow.', merge: 'Merge Color Boxes', mergeDesc: 'Boxes sharing a tag color can become one larger box, shown as a tag or group, and restored whenever you need.', groupKey: 'Group Shortcut', groupKeyDesc: 'Use same-colored boxes as a temporary workspace. A dedicated shortcut lets you bring them forward, merge them or restore them.', freedomTitle: 'Make It Yours', customSort: 'Custom Sorting', customSortDesc: 'Choose list, grid and other layouts. Sort freely by name, size or time.', customLayout: 'Custom Layout', customLayoutDesc: 'Set icon spacing, size and row/column counts, then choose the pagination that fits your workflow.', personalization: 'Personalization', personalizationDesc: 'Set the background, elements and interaction style for every box or just one.', themes: 'Color Themes', themesDesc: 'Pogget includes a range of color themes. Pick one you like and settle into a more comfortable workspace.', contributeText: '🎉Hello! Meeting you is the best part of what we do.<br>“Pogget” blends the sounds of Pocket and Widget: lightweight, flexible tools that fit right into your workflow.<br>Pogget is built around its users and supported by every member of the community.<br>Thanks for lighting the way with your ideas, feedback and support.', submitIssue: 'Submit an ISSUE', channel: 'Tencent Channel', support: 'Support', follow: 'Follow on Bilibili', sponsorDev: 'Support Development', sponsorList: 'View the full sponsor list', sponsorPreview: 'Scrolling sponsor preview', thanks: 'Thanks', loadingSponsors: 'Loading sponsors', sponsorCount: n => `${n} sponsors`, view: 'View', collapse: 'Collapse', fullSponsors: 'Full sponsor list, scroll vertically', loadSponsors: 'Click to load the full list', loadingLogs: 'Loading changelog…', expandLogs: 'Show more', collapseLogs: 'Show less', logsError: 'Unable to load the changelog. Please try again later.', latest: 'You are up to date!', latestBody: n => `Your current version (Build ${n}) is the latest.`, newVersion: v => `New version: ${v}`, close: 'Close', downloadNow: 'Download now', windowsRecommended: 'Pogget Windows x64 (Recommended)', windowsArm: 'Pogget Windows ARM64', pdbDebug: 'Pogget PDB x64 (DEBUG)', downloadLogs: 'View changelog', carouselControl: 'Carousel controls', showPage: n => `Show page ${n}`, pause: 'Pause carousel', play: 'Play carousel', altShare: 'Pogget preview', altComponent1: 'Pogget component 1', altComponent2: 'Pogget component 2', altMerged: 'Color-box merge preview', altTag: 'Tag management preview', altSettings: 'Pogget personalization panel', altList: 'Pogget list layout', altGrid: 'Pogget free grid layout', altPaged: 'Pogget paged grid layout'
+        }
+      };
+      const languageOverride = new URLSearchParams(window.location.search).get('lang');
+      const language = (languageOverride || navigator.language || '').toLowerCase();
+      const locale = language.startsWith('zh-cn') || language.startsWith('zh-hans') || language === 'zh' || language.startsWith('zh-sg') ? 'zh-CN' : language.startsWith('zh-tw') || language.startsWith('zh-hant') || language.startsWith('zh-hk') || language.startsWith('zh-mo') ? 'zh-TW' : 'en-US';
+      const t = (key, ...args) => { const value = locales[locale][key] ?? locales['en-US'][key] ?? key; return typeof value === 'function' ? value(...args) : value; };
+      const setText = (selector, key) => document.querySelectorAll(selector).forEach(el => { el.textContent = t(key); });
+      const setLabel = (selector, key) => document.querySelectorAll(selector).forEach(el => {
+        const textNodes = Array.from(el.childNodes).filter(node => node.nodeType === Node.TEXT_NODE);
+        const textNode = textNodes[textNodes.length - 1];
+        textNodes.slice(0, -1).forEach(node => { if (!node.nodeValue.trim()) node.nodeValue = ''; });
+        if (textNode) {
+          const leadingSpace = textNode.previousSibling && textNode.previousSibling.nodeType === Node.ELEMENT_NODE ? ' ' : '';
+          const trailingSpace = textNode.nextSibling && textNode.nextSibling.nodeType === Node.ELEMENT_NODE ? ' ' : '';
+          textNode.nodeValue = `${leadingSpace}${t(key)}${trailingSpace}`;
+        } else {
+          el.append(` ${t(key)}`);
+        }
+      });
+      const setHTML = (selector, key) => document.querySelectorAll(selector).forEach(el => { el.innerHTML = t(key); });
+      const apply = () => {
+        document.documentElement.lang = locale;
+        document.title = t('pageTitle');
+        const description = document.querySelector('meta[name="description"]'); if (description) description.content = t('metaDescription');
+        document.querySelectorAll('meta[property="og:title"], meta[name="twitter:title"]').forEach(el => { el.content = t('pageTitle'); }); document.querySelectorAll('meta[property="og:description"], meta[name="twitter:description"]').forEach(el => { el.content = t('metaDescription'); });
+        setText('.header-right > .vilinko-control[href="#together"]', 'navParticipate'); setText('.header-right .js-download-btn', 'download'); setText('.action-group .js-download-btn', 'download'); setLabel('.pageTitleDes', 'sponsor'); setText('.hero-section .footer-text', 'explore'); setText('.more-info-section .footer-content .footer-text', 'together'); setText('.together-changelog-link .footer-text', 'changelog');
+        setText('.sub-giant-text', 'subHero'); setText('.together-title', 'together'); setHTML('.together-content', 'contributeText'); setText('.together-changelog-link .footer-text', 'changelog'); setText('.changelog-title', 'changelog');
+        setText('.pogget-title-pill span', 'unnamed'); setText('.pogget-window-content p:nth-child(1)', 'demo');
+        document.querySelectorAll('.pogget-window-content p:nth-child(2)').forEach(el => { el.innerHTML = `${t('pressL')} <span class="vilinko-control key-btn">L</span> ${t('setGroup')}`; });
+        document.querySelectorAll('.pogget-window-content p:nth-child(3)').forEach(el => { el.innerHTML = `${t('grouped')} <span class="vilinko-control key-btn">CTRL</span> ${t('temporarilyUngroup')}`; });
+        const slideTitles = ['powerful', 'groupingTitle', 'freedomTitle']; document.querySelectorAll('.more-info-title').forEach((el, i) => el.textContent = t(slideTitles[i])); const titles = ['mapped','regular','target','magnet','quick','sameGroup','merge','groupKey','customSort','customLayout','personalization','themes']; document.querySelectorAll('.accordion-header > span').forEach((el, i) => el.textContent = t(titles[i]));
+        const descs = ['mappedDesc','regularDesc','targetDesc','magnetDesc','quickDesc','sameGroupDesc','mergeDesc','groupKeyDesc','customSortDesc','customLayoutDesc','personalizationDesc','themesDesc']; document.querySelectorAll('.accordion-content p').forEach((el, i) => el.textContent = t(descs[i]));
+        setLabel('#createWidgetBtn', 'createWidget'); setLabel('.together-btn:nth-child(1)', 'submitIssue'); setLabel('.together-btn:nth-child(2)', 'channel'); setLabel('.together-btn:nth-child(3)', 'support'); setLabel('.together-btn:nth-child(4)', 'follow'); setLabel('.together-btn:nth-child(5)', 'sponsorDev');
+        const attrs = [['#featureCarousel','aria-label','featureLabel'],['.feature-carousel-controls','aria-label','carouselControl'],['.sponsor-strip','aria-label','sponsorList'],['#sponsor-marquee','aria-label','sponsorPreview'],['#sponsor-full-scroll','aria-label','fullSponsors'],['#sponsor-view-indicator span','data-i18n','view']]; attrs.forEach(([selector, attr, key]) => document.querySelectorAll(selector).forEach(el => attr === 'data-i18n' ? el.textContent = t(key) : el.setAttribute(attr, t(key))));
+        document.querySelectorAll('a[href="#more-info"]').forEach(el => el.setAttribute('aria-label', t('scrollMore'))); document.querySelectorAll('a[href="#together"]').forEach(el => el.setAttribute('aria-label', t('scrollMore'))); document.querySelectorAll('a[href="#changelog"]').forEach(el => el.setAttribute('aria-label', t('scrollMore')));
+        const tooltips = document.querySelectorAll('.nav-capsule-item[data-tooltip]'); if (tooltips[0]) tooltips[0].setAttribute('data-tooltip', locale === 'en-US' ? 'Open the PoggetCore repository\nIssues and ideas are welcome' : locale === 'zh-TW' ? '查看 PoggetCore 儲存庫\n歡迎提交 issue～' : '查看 PoggetCore 的仓库\n欢迎提交 issue～'); if (tooltips[1]) tooltips[1].setAttribute('data-tooltip', locale === 'en-US' ? 'Read the feature guide' : locale === 'zh-TW' ? '查看功能說明' : '查看功能说明');
+        document.querySelectorAll('.feature-carousel-dot').forEach((el, i) => el.setAttribute('aria-label', t('showPage', i + 1))); const toggle = document.querySelector('.feature-carousel-toggle'); if (toggle) toggle.setAttribute('aria-label', t('pause'));
+        setText('.sponsor-strip-label-full', 'thanks'); setText('.sponsor-pill', 'loadingSponsors'); setText('.sponsor-full-status', 'loadSponsors'); setText('#log-container > p', 'loadingLogs'); setText('.download-log-link', 'downloadLogs'); const updateTitle = document.querySelector('#update-title'); if (updateTitle) updateTitle.textContent = locale === 'en-US' ? 'New version available!' : locale === 'zh-TW' ? '發現新版本！' : '发现新版本！'; setText('#update-close', 'close'); setText('#update-download-btn', 'downloadNow');
+        const options = ['windowsRecommended','windowsArm','pdbDebug']; document.querySelectorAll('.download-option').forEach((el, i) => { const icon = el.querySelector('i'); el.textContent = ''; if (icon) el.append(icon); el.append(` ${t(options[i])}`); });
+        const altKeys = ['altShare','altComponent1','altComponent2','altMerged','altTag','altSettings','altList','altGrid','altPaged']; document.querySelectorAll('img').forEach(img => { const src = img.getAttribute('src') || ''; const index = ['pogget_share.png','pogget_com1.png','pogget_com2.png','pg_merged_tab.png','pg_tag_mgr.png','pg_u_main.png','pg_u_1.png','pg_u_2.png','pg_u_3.png'].findIndex(name => src.endsWith(name)); if (index >= 0) img.alt = t(altKeys[index]); });
+      };
+      return { locale, t, apply };
+    })();
+
+    window.PoggetI18n = POGGET_I18N;
     const _pog = { valueOf: () => "Pog", toString: () => "Pog" };
     const _get = { valueOf: () => "get!", toString: () => "get!" };
     ['pocket', 'Pocket', 'POCKET'].forEach(k => Object.defineProperty(window, k, { get: () => _pog }));
@@ -15,6 +91,7 @@
     };
 
     document.addEventListener("DOMContentLoaded", () => {
+      POGGET_I18N.apply();
       // === 手风琴/折叠面板交互逻辑 ===
       const accordionHeaders = document.querySelectorAll('.accordion-header');
       accordionHeaders.forEach(header => {
@@ -105,6 +182,12 @@
           
           let x = e.clientX;
           let y = e.clientY;
+          if (window.innerWidth <= 600) {
+            const margin = 12;
+            const cardWidth = Math.min(300, window.innerWidth - margin * 2);
+            x = Math.max(margin, Math.min(x, window.innerWidth - cardWidth - margin));
+            y = Math.max(margin, Math.min(y, window.innerHeight - 180));
+          }
           
 
           if (x + 280 > window.innerWidth) { 
@@ -290,7 +373,7 @@
           toggle.addEventListener('click', () => {
             isPlaying = !isPlaying;
             toggle.setAttribute('aria-pressed', isPlaying ? 'false' : 'true');
-            toggle.setAttribute('aria-label', isPlaying ? '暂停轮播' : '播放轮播');
+            toggle.setAttribute('aria-label', isPlaying ? POGGET_I18N.t('pause') : POGGET_I18N.t('play'));
             toggle.innerHTML = `<i class="fa-solid fa-${isPlaying ? 'pause' : 'play'}" aria-hidden="true"></i>`;
             if (isPlaying) {
               animateHighlight(currentSlide);
@@ -616,10 +699,10 @@
       // 生成调色板 HTML 模板
       const paletteHTML = `
         <div class="palette-popup">
-          <div class="palette-title">调色板</div>
+          <div class="palette-title">${POGGET_I18N.t('palette')}</div>
           <div class="palette-colors">
             ${paletteColors.map(c => `<div class="color-circle" style="background-color: ${c};" data-color="${c}"></div>`).join('')}
-            <div class="btn-ungroup">未编组</div>
+            <div class="btn-ungroup">${POGGET_I18N.t('ungroup')}</div>
           </div>
         </div>
       `;

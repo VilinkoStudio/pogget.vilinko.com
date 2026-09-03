@@ -937,10 +937,12 @@
       .more-info-wrapper {
         flex-direction: column;
         gap: 2.5rem;
+        min-width: 0;
       }
       .more-info-text-col {
         text-align: center;
         width: 100%;
+        min-width: 0;
       }
       .more-info-text-col .more-info-title,
       .more-info-text-col .more-info-content {
@@ -949,11 +951,14 @@
       .more-info-gallery-col {
         width: 100%;
         left: 0; 
+        min-width: 0;
       }
       
       /* 手机版改为横向滑动的画廊，高度一致 */
       .masonry-layout {
         display: flex;
+        width: 100%;
+        max-width: 100%;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         gap: 15px;
@@ -977,7 +982,7 @@
       
       .masonry-item {
         flex: 0 0 auto; 
-        height: 260px; 
+        height: 260px;
         scroll-snap-align: center;
       }
       
@@ -993,6 +998,46 @@
       .pogget-window.mobile-show {
         display: block !important; 
       }
+    }
+
+    @media (max-width: 600px) {
+      html, body { overflow-x: hidden; }
+      .hero-section { padding: 5.5rem 1rem 1.25rem; }
+      .header { padding: 0.9rem 1rem; gap: 0.65rem; }
+      .header-left { min-width: 0; }
+      .placeholder-img { width: 40px; height: 40px; min-width: 40px; }
+      .header-right { gap: 7px; min-width: 0; }
+      .nav-capsule-group { height: 40px; padding: 0 4px; gap: 2px; }
+      .nav-capsule-item { width: 30px; height: 30px; font-size: 0.95rem; }
+      .header-right .vilinko-control { padding-left: 0.8rem; padding-right: 0.8rem; white-space: nowrap; }
+      .main-content { width: 100%; margin: 2rem 0; transform: translateY(-18px); }
+      .top-text-pill { max-width: 100%; padding: 0.2rem 0.9rem; font-size: clamp(0.95rem, 4.5vw, 1.35rem); }
+      .giant-text { max-width: 100%; font-size: clamp(3.7rem, 20vw, 7rem); overflow-wrap: anywhere; }
+      .sub-giant-text { max-width: 34rem; padding: 0 0.35rem; font-size: 1rem; }
+      .action-group { width: 100%; gap: 10px; }
+      .footer-content { align-items: center; gap: 0.5rem; }
+      .footer-text { max-width: calc(100% - 40px); font-size: clamp(1.15rem, 6vw, 1.7rem); overflow-wrap: anywhere; }
+      .more-info-section, .together-section, .changelog-section { padding-left: 1rem; padding-right: 1rem; }
+      .more-info-wrapper { gap: 1.5rem; }
+      .more-info-title, .together-title, .changelog-title { overflow-wrap: anywhere; }
+      .accordion-header { padding: 0.85rem 0.9rem; font-size: 1rem; gap: 0.75rem; }
+      .accordion-header > span { min-width: 0; overflow-wrap: anywhere; }
+      .accordion-content { padding-left: 0.9rem; padding-right: 0.9rem; font-size: 0.94rem; overflow-wrap: anywhere; }
+      .group-gallery, .freedom-gallery { width: 100%; max-width: 100%; }
+      .group-gallery-tag { left: -3%; }
+      .freedom-gallery-card { max-width: 100%; }
+      .pogget-window { width: min(300px, calc(100vw - 24px)); }
+      .pogget-window-content { padding: 28px 12px; font-size: 0.84rem; line-height: 2; overflow-wrap: anywhere; }
+      .palette-popup { width: min(250px, calc(100vw - 36px)); }
+      .together-content { overflow-wrap: anywhere; }
+      .together-btn { max-width: 100%; min-width: 0; }
+      .log-item, .log-header, .log-version-title, .log-content { min-width: 0; }
+      .log-content { overflow-wrap: anywhere; word-break: break-word; }
+      .sponsor-strip { grid-template-columns: auto minmax(0, 1fr) auto; }
+      .download-card { width: min(300px, calc(100vw - 24px)); min-width: 0; max-width: calc(100vw - 24px); }
+      .download-option { min-width: 0; padding: 12px 10px; font-size: 0.95rem; overflow-wrap: anywhere; }
+      .update-modal { width: calc(100vw - 24px); padding: 1.25rem; }
+      .update-modal-footer { flex-wrap: wrap; }
     }
 
     .together-section {
@@ -1801,6 +1846,8 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+     const i18n = window.PoggetI18n;
+     const t = (key, ...args) => i18n ? i18n.t(key, ...args) : key;
      const logContainer = document.getElementById('log-container');
      const logUrl = 'https://down1.vilinko.com/res/logs/pogget_update.txt';
      
@@ -1867,7 +1914,7 @@
              
              const toggleBtn = document.createElement('button');
              toggleBtn.className = 'vilinko-control vilinko-button vilinko-round-full vilinko-inset-new vilinko-center-element';
-             toggleBtn.innerHTML = '<i class="fa-solid fa-chevron-down"></i> 展开日志';
+             toggleBtn.innerHTML = `<i class="fa-solid fa-chevron-down"></i> ${t('expandLogs')}`;
              
              let isExpanded = false;
              toggleBtn.addEventListener('click', () => {
@@ -1877,8 +1924,8 @@
                    log.style.display = isExpanded ? 'block' : 'none';
                 });
                 toggleBtn.innerHTML = isExpanded 
-                   ? '<i class="fa-solid fa-chevron-up"></i> 收起日志' 
-                   : '<i class="fa-solid fa-chevron-down"></i> 展开日志';
+                   ? `<i class="fa-solid fa-chevron-up"></i> ${t('collapseLogs')}`
+                   : `<i class="fa-solid fa-chevron-down"></i> ${t('expandLogs')}`;
              });
              
              toggleDiv.appendChild(toggleBtn);
@@ -1890,7 +1937,7 @@
        })
        .catch(err => {
           console.error('获取日志失败:', err);
-          logContainer.innerHTML = '<p style="text-align:center; color:red; font-weight:bold;">无法加载更新日志，请稍后重试。</p>';
+           logContainer.innerHTML = `<p style="text-align:center; color:red; font-weight:bold;">${t('logsError')}</p>`;
        });
 
      // 检查更新功能
@@ -1909,12 +1956,12 @@
         if (!isNaN(currentBuild)) {
            if (currentBuild >= latestVersionData.build) {
               // 当前已是最新
-              updateTitle.textContent = '已经是最新版本！';
-              updateContent.innerHTML = `<p>您当前的版本 (Build ${currentBuild}) 已是最新版本啦！</p>`;
+               updateTitle.textContent = t('latest');
+               updateContent.innerHTML = `<p>${t('latestBody', currentBuild)}</p>`;
               updateDownloadBtn.style.display = 'none'; 
            } else {
               // 发现新版本
-              updateTitle.textContent = `发现新版本：${latestVersionData.version}`;
+               updateTitle.textContent = t('newVersion', latestVersionData.version);
               updateContent.innerHTML = `
                 <p style="font-weight:bold; margin-bottom:8px;">${latestVersionData.title} <span style="font-size:0.85rem;color:#666;font-weight:normal;">(${latestVersionData.date})</span></p>
                 <div style="white-space:pre-wrap; font-size:0.9rem;">${latestVersionData.content}</div>
